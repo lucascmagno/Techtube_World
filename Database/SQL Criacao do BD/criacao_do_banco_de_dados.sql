@@ -18,17 +18,6 @@ CREATE SCHEMA IF NOT EXISTS `techtube` DEFAULT CHARACTER SET utf8 ;
 USE `techtube` ;
 
 -- -----------------------------------------------------
--- Table `techtube`.`timestamps`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `techtube`.`timestamps` (
-  `id_timestamps` INT NOT NULL AUTO_INCREMENT,
-  `create_time` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
-  `update_time` TIMESTAMP NULL,
-  `excluido` TINYINT(1) NOT NULL DEFAULT 0,
-  PRIMARY KEY (`id_timestamps`));
-
-
--- -----------------------------------------------------
 -- Table `techtube`.`tb_cadastro`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `techtube`.`tb_cadastro` (
@@ -391,6 +380,17 @@ CREATE TABLE IF NOT EXISTS `techtube`.`turma_aluno` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
+
+-- -----------------------------------------------------
+-- Table `techtube`.`timestamps`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `techtube`.`timestamps` (
+  `id_timestamps` INT NOT NULL AUTO_INCREMENT,
+  `create_time` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+  `update_time` TIMESTAMP NULL,
+  `excluido` TINYINT(1) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`id_timestamps`));
+
 
 
 SET SQL_MODE=@OLD_SQL_MODE;
