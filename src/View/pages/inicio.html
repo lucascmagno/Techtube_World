@@ -7,26 +7,28 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
   <style>
-    body {
-      background-color: var(--bs-body-bg);
-    }
-    /* Sidebar fixa */
+    body { background-color: var(--bs-body-bg); }
+
+    /* Sidebar - só aparece no desktop */
     .sidebar {
       position: fixed;
-      top: 0;
-      left: 0;
-      bottom: 0;
+      top: 0; left: 0; bottom: 0;
       width: 220px;
       background-color: #0d6efd;
       color: #fff;
       overflow-y: auto;
       z-index: 1020;
+      display: none; /* escondida no mobile */
     }
+    @media (min-width: 768px) {
+      .sidebar { display: block; }
+      .main-content { margin-left: 220px; }
+    }
+
     .sidebar a {
       color: #fff !important;
       text-decoration: none;
-      display: flex;
-      align-items: center;
+      display: flex; align-items: center;
       padding: 10px 15px;
       border-radius: 6px 0 0 6px;
       margin: 5px 0;
@@ -34,122 +36,64 @@
       transition: all 0.2s;
     }
     .sidebar a:hover,
-    .sidebar a.active {
-      background-color: #0b5ed7;
-    }
+    .sidebar a.active { background-color: #0b5ed7; }
     .sidebar a:hover::after,
     .sidebar a.active::after {
       content: "";
       position: absolute;
-      right: 0;
-      top: 0;
-      height: 100%;
-      width: 4px;
+      right: 0; top: 0; height: 100%; width: 4px;
       background-color: #DC3DEB;
       border-radius: 0 4px 4px 0;
     }
     .sidebar .logo {
-      font-size: 1.3rem;
-      font-weight: bold;
+      font-size: 1.3rem; font-weight: bold;
       padding: 20px 15px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
+      display: flex; align-items: center; gap: 10px;
     }
-    /* Offcanvas (mobile) */
-    .offcanvas {
-      background-color: #0d6efd !important;
-      color: #fff;
-    }
+
+    /* Offcanvas (menu mobile) */
+    .offcanvas { background-color: #0d6efd !important; color: #fff; }
     .offcanvas a {
-      color: #fff !important;
-      text-decoration: none;
-      display: block;
-      padding: 10px 15px;
-      border-radius: 6px 0 0 6px;
-      margin: 5px 0;
-      position: relative;
+      color: #fff !important; text-decoration: none;
+      display: block; padding: 10px 15px;
+      border-radius: 6px 0 0 6px; margin: 5px 0; position: relative;
     }
     .offcanvas a:hover,
-    .offcanvas a.active {
-      background-color: #0b5ed7;
-    }
+    .offcanvas a.active { background-color: #0b5ed7; }
     .offcanvas a:hover::after,
     .offcanvas a.active::after {
-      content: "";
-      position: absolute;
-      right: 0;
-      top: 0;
-      height: 100%;
-      width: 4px;
-      background-color: #DC3DEB;
-      border-radius: 0 4px 4px 0;
+      content: ""; position: absolute; right: 0; top: 0; height: 100%; width: 4px;
+      background-color: #DC3DEB; border-radius: 0 4px 4px 0;
     }
-    /* Conteúdo principal com offset da sidebar */
-    .main-content {
-      margin-left: 220px;
-    }
-    /* Banner */
-    .banner {
-      border-radius: 12px;
-      overflow: hidden;
-      margin-bottom: 20px;
-    }
+
     /* Cards */
-    .course-card {
-      border-radius: 12px;
-      overflow: hidden;
-      transition: transform 0.2s;
-    }
-    .course-card:hover {
-      transform: scale(1.02);
-    }
+    .course-card { border-radius: 12px; overflow: hidden; transition: transform 0.2s; }
+    .course-card:hover { transform: scale(1.02); }
+
     /* Footer */
-    footer {
-      background-color: #0d6efd;
-      color: #fff;
-      padding: 40px 20px;
-      margin-top: 40px;
-    }
-    footer a {
-      color: #fff;
-      text-decoration: none;
-    }
-    footer a:hover {
-      text-decoration: underline;
-    }
-    /* Botão voltar ao topo */
+    footer { background-color: #0d6efd; color: #fff; padding: 40px 20px; margin-top: 40px; }
+    footer a { color: #fff; text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    /* Botão Top */
     #btnTop {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      border-radius: 50%;
-      padding: 12px;
-      background-color: #DC3DEB;
-      color: #fff;
-      border: none;
-      display: none;
-      z-index: 1050;
+      position: fixed; bottom: 20px; right: 20px;
+      border-radius: 50%; padding: 12px;
+      background-color: #DC3DEB; color: #fff; border: none;
+      display: none; z-index: 1050;
     }
+
     /* Navbar topo */
-    .navbar-top {
-      z-index: 1030;
-    }
-    .navbar-top .form-control {
-      max-width: 400px;
-    }
+    .navbar-top { z-index: 1030; }
     .profile-img {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      object-fit: cover;
-      cursor: pointer;
+      width: 40px; height: 40px; border-radius: 50%;
+      object-fit: cover; cursor: pointer;
     }
   </style>
 </head>
 <body class="bg-light">
 
-<!-- Navbar (mobile/tablet) -->
+<!-- Navbar Mobile -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary d-md-none">
   <div class="container-fluid">
     <a class="navbar-brand fw-bold" href="#"><i class="bi bi-book-fill"></i> TechTube</a>
@@ -159,8 +103,8 @@
   </div>
 </nav>
 
-<!-- Offcanvas Menu (mobile) -->
-<div class="offcanvas offcanvas-start text-white" tabindex="-1" id="mobileMenu">
+<!-- Offcanvas Menu (Mobile) -->
+<div class="offcanvas offcanvas-start" tabindex="-1" id="mobileMenu">
   <div class="offcanvas-header">
     <h5 class="offcanvas-title"><i class="bi bi-book-fill me-2"></i> TechTube World</h5>
     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
@@ -170,56 +114,43 @@
       <li class="nav-item"><a href="#" class="active"><i class="bi bi-house-door me-2"></i> Início</a></li>
       <li class="nav-item"><a href="#"><i class="bi bi-people me-2"></i> Alunos</a></li>
       <li class="nav-item"><a href="#"><i class="bi bi-person-badge me-2"></i> Professores</a></li>
-      <li class="nav-item"><a href="./cursos.html"><i class="bi bi-journal-bookmark me-2"></i> Cursos</a></li>
+      <li class="nav-item"><a href="cursos.html"><i class="bi bi-journal-bookmark me-2"></i> Cursos</a></li>
       <li class="nav-item"><a href="#"><i class="bi bi-person-circle me-2"></i> Perfil</a></li>
     </ul>
-    <button id="themeToggleMobile" class="btn btn-light mt-3 w-100">
-      <i class="bi bi-moon-fill"></i> Tema Escuro
-    </button>
   </div>
 </div>
 
-<!-- Sidebar (desktop) -->
-<nav class="d-none d-md-block sidebar p-3">
-  <div class="logo">
-    <i class="bi bi-book-fill"></i> TechTube World
-  </div>
+<!-- Sidebar (Desktop) -->
+<nav class="sidebar p-3">
+  <div class="logo"><i class="bi bi-book-fill"></i> TechTube World</div>
   <ul class="nav flex-column">
     <li class="nav-item"><a href="#" class="active"><i class="bi bi-house-door me-2"></i> Início</a></li>
     <li class="nav-item"><a href="#"><i class="bi bi-people me-2"></i> Alunos</a></li>
     <li class="nav-item"><a href="#"><i class="bi bi-person-badge me-2"></i> Professores</a></li>
-    <li class="nav-item"><a href="./cursos.html"><i class="bi bi-journal-bookmark me-2"></i> Cursos</a></li>
+    <li class="nav-item"><a href="cursos.html"><i class="bi bi-journal-bookmark me-2"></i> Cursos</a></li>
     <li class="nav-item"><a href="#"><i class="bi bi-person-circle me-2"></i> Perfil</a></li>
   </ul>
-  <button id="themeToggleDesktop" class="btn btn-light mt-4 w-100">
-    <i class="bi bi-moon-fill"></i> Tema Escuro
-  </button>
 </nav>
 
 <!-- Conteúdo -->
 <main class="main-content">
-  <!-- Navbar topo -->
+  <!-- Navbar Topo -->
   <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm sticky-top navbar-top px-3">
     <form class="d-flex me-auto w-50">
       <input class="form-control me-2" type="search" placeholder="Pesquisar cursos..." aria-label="Pesquisar">
       <button class="btn btn-outline-primary" type="submit"><i class="bi bi-search"></i></button>
     </form>
     <ul class="navbar-nav ms-auto align-items-center">
-      <li class="nav-item me-3">
-        <a href="#" class="nav-link position-relative">
-          <i class="bi bi-bell fs-5"></i>
-          <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">3</span>
-        </a>
-      </li>
+      <li class="nav-item me-3"><a href="#" class="nav-link"><i class="bi bi-bell fs-5"></i></a></li>
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" role="button" data-bs-toggle="dropdown">
-          <img src="https://picsum.photos/200" alt="Perfil" class="profile-img">
+        <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" data-bs-toggle="dropdown">
+          <img src="https://picsum.photos/200" class="profile-img" alt="Perfil">
         </a>
         <ul class="dropdown-menu dropdown-menu-end">
-          <li><a class="dropdown-item" href="#"><i class="bi bi-person-circle me-2"></i> Ver Perfil</a></li>
-          <li><a class="dropdown-item" href="#"><i class="bi bi-arrow-repeat me-2"></i> Trocar Conta</a></li>
+          <li><a class="dropdown-item" href="#">Ver Perfil</a></li>
+          <li><a class="dropdown-item" href="#">Trocar Conta</a></li>
           <li><hr class="dropdown-divider"></li>
-          <li><a class="dropdown-item text-danger" href="#"><i class="bi bi-box-arrow-right me-2"></i> Sair</a></li>
+          <li><a class="dropdown-item text-danger" href="#">Sair</a></li>
         </ul>
       </li>
     </ul>
@@ -227,19 +158,18 @@
 
   <!-- Banner -->
   <div class="banner mt-3 px-3">
-    <img src="https://picsum.photos/1200/300" class="img-fluid w-100" alt="Banner">
+    <img src="https://picsum.photos/1200/300" class="img-fluid w-100 rounded" alt="Banner">
   </div>
 
   <!-- Grid de Cursos -->
-  <div class="row g-4 px-3">
-    <!-- Card Exemplo -->
+  <div class="row g-4 px-3 mt-2">
     <div class="col-12 col-sm-6 col-lg-4">
       <div class="card course-card shadow-sm">
         <img src="https://picsum.photos/400/200" class="card-img-top" alt="Curso">
         <div class="card-body">
           <small class="text-muted">Categoria | 18 de agosto de 2025</small>
           <h5 class="card-title mt-2">Nome do Curso</h5>
-          <p class="card-text text-muted">Descrição do curso resumida para chamar a atenção.</p>
+          <p class="card-text text-muted">Descrição do curso resumida...</p>
           <p class="mb-1"><strong>Carga horária:</strong> 40h</p>
           <div class="d-flex justify-content-between align-items-center">
             <a href="#" class="btn btn-sm btn-primary">Mais Detalhes</a>
@@ -261,7 +191,7 @@
         <h6>Navegação</h6>
         <ul class="list-unstyled">
           <li><a href="#">Início</a></li>
-          <li><a href="#">Cursos</a></li>
+          <li><a href="cursos.html">Cursos</a></li>
           <li><a href="#">Turmas</a></li>
           <li><a href="#">Sobre nós</a></li>
         </ul>
@@ -287,34 +217,9 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-  // Botão voltar ao topo
   const btnTop = document.getElementById("btnTop");
-  window.onscroll = () => {
-    btnTop.style.display = window.scrollY > 200 ? "block" : "none";
-  };
+  window.onscroll = () => btnTop.style.display = window.scrollY > 200 ? "block" : "none";
   btnTop.onclick = () => window.scrollTo({top:0, behavior:"smooth"});
-
-  // Tema claro/escuro
-  function toggleTheme() {
-    const html = document.documentElement;
-    if (html.getAttribute("data-bs-theme") === "light") {
-      html.setAttribute("data-bs-theme", "dark");
-      document.body.classList.remove("bg-light");
-      document.body.classList.add("bg-dark");
-      themeToggleDesktop.innerHTML = '<i class="bi bi-sun-fill"></i> Tema Claro';
-      themeToggleMobile.innerHTML = '<i class="bi bi-sun-fill"></i> Tema Claro';
-    } else {
-      html.setAttribute("data-bs-theme", "light");
-      document.body.classList.remove("bg-dark");
-      document.body.classList.add("bg-light");
-      themeToggleDesktop.innerHTML = '<i class="bi bi-moon-fill"></i> Tema Escuro';
-      themeToggleMobile.innerHTML = '<i class="bi bi-moon-fill"></i> Tema Escuro';
-    }
-  }
-  const themeToggleDesktop = document.getElementById("themeToggleDesktop");
-  const themeToggleMobile = document.getElementById("themeToggleMobile");
-  themeToggleDesktop.onclick = toggleTheme;
-  themeToggleMobile.onclick = toggleTheme;
 </script>
 </body>
 </html>

@@ -7,25 +7,28 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
   <style>
-    body {
-      background-color: var(--bs-body-bg);
-    }
+    body { background-color: var(--bs-body-bg); }
+
+    /* Sidebar - só aparece no desktop */
     .sidebar {
       position: fixed;
-      top: 0;
-      left: 0;
-      bottom: 0;
+      top: 0; left: 0; bottom: 0;
       width: 220px;
       background-color: #0d6efd;
       color: #fff;
       overflow-y: auto;
       z-index: 1020;
+      display: none;
     }
+    @media (min-width: 768px) {
+      .sidebar { display: block; }
+      .main-content { margin-left: 220px; }
+    }
+
     .sidebar a {
       color: #fff !important;
       text-decoration: none;
-      display: flex;
-      align-items: center;
+      display: flex; align-items: center;
       padding: 10px 15px;
       border-radius: 6px 0 0 6px;
       margin: 5px 0;
@@ -33,72 +36,64 @@
       transition: all 0.2s;
     }
     .sidebar a:hover,
-    .sidebar a.active {
-      background-color: #0b5ed7;
-    }
+    .sidebar a.active { background-color: #0b5ed7; }
     .sidebar a:hover::after,
     .sidebar a.active::after {
       content: "";
       position: absolute;
-      right: 0;
-      top: 0;
-      height: 100%;
-      width: 4px;
+      right: 0; top: 0; height: 100%; width: 4px;
       background-color: #DC3DEB;
       border-radius: 0 4px 4px 0;
     }
     .sidebar .logo {
-      font-size: 1.3rem;
-      font-weight: bold;
+      font-size: 1.3rem; font-weight: bold;
       padding: 20px 15px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
+      display: flex; align-items: center; gap: 10px;
     }
-    .main-content {
-      margin-left: 220px;
+
+    /* Offcanvas (menu mobile) */
+    .offcanvas { background-color: #0d6efd !important; color: #fff; }
+    .offcanvas a {
+      color: #fff !important; text-decoration: none;
+      display: block; padding: 10px 15px;
+      border-radius: 6px 0 0 6px; margin: 5px 0; position: relative;
     }
-    .course-card {
-      border-radius: 12px;
-      overflow: hidden;
-      transition: transform 0.2s;
+    .offcanvas a:hover,
+    .offcanvas a.active { background-color: #0b5ed7; }
+    .offcanvas a:hover::after,
+    .offcanvas a.active::after {
+      content: ""; position: absolute; right: 0; top: 0; height: 100%; width: 4px;
+      background-color: #DC3DEB; border-radius: 0 4px 4px 0;
     }
-    .course-card:hover {
-      transform: scale(1.02);
-    }
-    footer {
-      background-color: #0d6efd;
-      color: #fff;
-      padding: 40px 20px;
-      margin-top: 40px;
-    }
+
+    /* Cards */
+    .course-card { border-radius: 12px; overflow: hidden; transition: transform 0.2s; }
+    .course-card:hover { transform: scale(1.02); }
+
+    /* Footer */
+    footer { background-color: #0d6efd; color: #fff; padding: 40px 20px; margin-top: 40px; }
     footer a { color: #fff; text-decoration: none; }
     footer a:hover { text-decoration: underline; }
+
+    /* Botão Top */
     #btnTop {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      border-radius: 50%;
-      padding: 12px;
-      background-color: #DC3DEB;
-      color: #fff;
-      border: none;
-      display: none;
-      z-index: 1050;
+      position: fixed; bottom: 20px; right: 20px;
+      border-radius: 50%; padding: 12px;
+      background-color: #DC3DEB; color: #fff; border: none;
+      display: none; z-index: 1050;
     }
+
+    /* Navbar topo */
     .navbar-top { z-index: 1030; }
     .profile-img {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      object-fit: cover;
-      cursor: pointer;
+      width: 40px; height: 40px; border-radius: 50%;
+      object-fit: cover; cursor: pointer;
     }
   </style>
 </head>
 <body class="bg-light">
 
-<!-- Navbar (mobile) -->
+<!-- Navbar Mobile -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary d-md-none">
   <div class="container-fluid">
     <a class="navbar-brand fw-bold" href="#"><i class="bi bi-book-fill"></i> TechTube</a>
@@ -108,15 +103,15 @@
   </div>
 </nav>
 
-<!-- Offcanvas (mobile) -->
-<div class="offcanvas offcanvas-start text-white" tabindex="-1" id="mobileMenu">
+<!-- Offcanvas Menu (Mobile) -->
+<div class="offcanvas offcanvas-start" tabindex="-1" id="mobileMenu">
   <div class="offcanvas-header">
     <h5 class="offcanvas-title"><i class="bi bi-book-fill me-2"></i> TechTube World</h5>
     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
   </div>
   <div class="offcanvas-body">
     <ul class="nav flex-column">
-      <li class="nav-item"><a href="./inicio.html"><i class="bi bi-house-door me-2"></i> Início</a></li>
+      <li class="nav-item"><a href="index.html"><i class="bi bi-house-door me-2"></i> Início</a></li>
       <li class="nav-item"><a href="#"><i class="bi bi-people me-2"></i> Alunos</a></li>
       <li class="nav-item"><a href="#"><i class="bi bi-person-badge me-2"></i> Professores</a></li>
       <li class="nav-item"><a href="cursos.html" class="active"><i class="bi bi-journal-bookmark me-2"></i> Cursos</a></li>
@@ -125,13 +120,11 @@
   </div>
 </div>
 
-<!-- Sidebar (desktop) -->
-<nav class="d-none d-md-block sidebar p-3">
-  <div class="logo">
-    <i class="bi bi-book-fill"></i> TechTube World
-  </div>
+<!-- Sidebar (Desktop) -->
+<nav class="sidebar p-3">
+  <div class="logo"><i class="bi bi-book-fill"></i> TechTube World</div>
   <ul class="nav flex-column">
-    <li class="nav-item"><a href="./inicio.html"><i class="bi bi-house-door me-2"></i> Início</a></li>
+    <li class="nav-item"><a href="index.html"><i class="bi bi-house-door me-2"></i> Início</a></li>
     <li class="nav-item"><a href="#"><i class="bi bi-people me-2"></i> Alunos</a></li>
     <li class="nav-item"><a href="#"><i class="bi bi-person-badge me-2"></i> Professores</a></li>
     <li class="nav-item"><a href="cursos.html" class="active"><i class="bi bi-journal-bookmark me-2"></i> Cursos</a></li>
@@ -141,7 +134,7 @@
 
 <!-- Conteúdo -->
 <main class="main-content">
-  <!-- Navbar topo -->
+  <!-- Navbar Topo -->
   <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm sticky-top navbar-top px-3">
     <form class="d-flex me-auto w-50">
       <input class="form-control me-2" type="search" placeholder="Pesquisar cursos..." aria-label="Pesquisar">
@@ -150,8 +143,8 @@
     <ul class="navbar-nav ms-auto align-items-center">
       <li class="nav-item me-3"><a href="#" class="nav-link"><i class="bi bi-bell fs-5"></i></a></li>
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" role="button" data-bs-toggle="dropdown">
-          <img src="https://picsum.photos/200" alt="Perfil" class="profile-img">
+        <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" data-bs-toggle="dropdown">
+          <img src="https://picsum.photos/200" class="profile-img" alt="Perfil">
         </a>
         <ul class="dropdown-menu dropdown-menu-end">
           <li><a class="dropdown-item" href="#">Ver Perfil</a></li>
@@ -168,13 +161,13 @@
     <div class="card shadow-sm p-3">
       <h5 class="mb-3"><i class="bi bi-funnel me-2"></i> Filtrar Cursos</h5>
       <form class="row g-3">
-        <div class="col-md-3">
+        <div class="col-12 col-md-3">
           <input type="text" class="form-control" placeholder="Nome do curso">
         </div>
-        <div class="col-md-2">
+        <div class="col-6 col-md-2">
           <input type="date" class="form-control">
         </div>
-        <div class="col-md-2">
+        <div class="col-6 col-md-2">
           <select class="form-select">
             <option selected>Categoria</option>
             <option>Programação</option>
@@ -182,7 +175,7 @@
             <option>Design</option>
           </select>
         </div>
-        <div class="col-md-2">
+        <div class="col-6 col-md-2">
           <select class="form-select">
             <option selected>Professor</option>
             <option>Maria</option>
@@ -190,7 +183,7 @@
             <option>Ana</option>
           </select>
         </div>
-        <div class="col-md-2">
+        <div class="col-6 col-md-2">
           <select class="form-select">
             <option selected>Inscritos</option>
             <option>+10</option>
@@ -198,7 +191,7 @@
             <option>+100</option>
           </select>
         </div>
-        <div class="col-md-1 d-grid">
+        <div class="col-12 col-md-1 d-grid">
           <button type="submit" class="btn btn-primary"><i class="bi bi-search"></i></button>
         </div>
       </form>
@@ -224,7 +217,7 @@
           </div>
         </div>
       </div>
-      <!-- repetir cards dinamicamente -->
+      <!-- repetir dinamicamente -->
     </div>
 
     <!-- Paginação -->
@@ -249,7 +242,7 @@
       <div class="col-md-4 mb-3">
         <h6>Navegação</h6>
         <ul class="list-unstyled">
-          <li><a href="inicio.html">Início</a></li>
+          <li><a href="index.html">Início</a></li>
           <li><a href="cursos.html">Cursos</a></li>
           <li><a href="#">Turmas</a></li>
           <li><a href="#">Sobre nós</a></li>
@@ -277,7 +270,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
   const btnTop = document.getElementById("btnTop");
-  window.onscroll = () => { btnTop.style.display = window.scrollY > 200 ? "block" : "none"; };
+  window.onscroll = () => btnTop.style.display = window.scrollY > 200 ? "block" : "none";
   btnTop.onclick = () => window.scrollTo({top:0, behavior:"smooth"});
 </script>
 </body>
