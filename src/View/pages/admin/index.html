@@ -64,6 +64,41 @@
 
     .navbar-top { z-index: 1030; }
     .nav-profile-img { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; cursor: pointer; }
+    /* Links do sidebar e offcanvas */
+    .sidebar a,
+    .offcanvas a {
+        color: #fff !important;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        padding: 10px 15px;
+        border-radius: 6px 0 0 6px;
+        margin: 5px 0;
+        position: relative;
+        transition: all 0.2s;
+    }
+
+    .offcanvas a:hover,
+    .offcanvas a.active,
+    .sidebar a:hover,
+    .sidebar a.active {
+        background-color: #0b5ed7;
+    }
+
+    .offcanvas a:hover::after,
+    .offcanvas a.active::after,
+    .sidebar a:hover::after,
+    .sidebar a.active::after {
+        content: "";
+        position: absolute;
+        right: 0;
+        top: 0;
+        height: 100%;
+        width: 4px;
+        background-color: #DC3DEB;
+        border-radius: 0 4px 4px 0;
+    }
+
   </style>
 </head>
 <body class="bg-light">
@@ -79,24 +114,25 @@
 </nav>
 
 <!-- Offcanvas Menu (Mobile) -->
-<div class="offcanvas offcanvas-start" tabindex="-1" id="mobileMenu">
+<div class="offcanvas offcanvas-start text-white" tabindex="-1" id="mobileMenu">
   <div class="offcanvas-header">
     <h5 class="offcanvas-title"><i class="bi bi-speedometer2 me-2"></i> Painel Admin</h5>
     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
   </div>
   <div class="offcanvas-body">
     <ul class="nav flex-column">
-      <li class="nav-item"><a href="admin.html" class="active"><i class="bi bi-speedometer2 me-2"></i> Dashboard</a></li>
-      <li class="nav-item"><a href="#"><i class="bi bi-people me-2"></i> Alunos</a></li>
-      <li class="nav-item"><a href="#"><i class="bi bi-person-badge me-2"></i> Professores</a></li>
-      <li class="nav-item"><a href="#"><i class="bi bi-journal-bookmark me-2"></i> Cursos</a></li>
-      <li class="nav-item"><a href="#"><i class="bi bi-diagram-3 me-2"></i> Turmas</a></li>
-      <li class="nav-item"><a href="#"><i class="bi bi-tags me-2"></i> Categorias</a></li>
-      <li class="nav-item"><a href="#"><i class="bi bi-list-check me-2"></i> Atividades</a></li>
-      <li class="nav-item"><a href="#"><i class="bi bi-person-gear me-2"></i> Usuários</a></li>
+      <li class="nav-item"><a href="admin.html" class="nav-link text-white active"><i class="bi bi-speedometer2 me-2"></i> Dashboard</a></li>
+      <li class="nav-item"><a href="#" class="nav-link text-white"><i class="bi bi-people me-2"></i> Alunos</a></li>
+      <li class="nav-item"><a href="#" class="nav-link text-white"><i class="bi bi-person-badge me-2"></i> Professores</a></li>
+      <li class="nav-item"><a href="#" class="nav-link text-white"><i class="bi bi-journal-bookmark me-2"></i> Cursos</a></li>
+      <li class="nav-item"><a href="#" class="nav-link text-white"><i class="bi bi-diagram-3 me-2"></i> Turmas</a></li>
+      <li class="nav-item"><a href="#" class="nav-link text-white"><i class="bi bi-tags me-2"></i> Categorias</a></li>
+      <li class="nav-item"><a href="#" class="nav-link text-white"><i class="bi bi-list-check me-2"></i> Atividades</a></li>
+      <li class="nav-item"><a href="#" class="nav-link text-white"><i class="bi bi-person-gear me-2"></i> Usuários</a></li>
     </ul>
   </div>
 </div>
+
 
 <!-- Sidebar (Desktop) -->
 <nav class="sidebar p-3">
