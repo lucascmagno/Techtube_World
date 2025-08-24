@@ -57,13 +57,13 @@
   <div class="offcanvas-body">
     <ul class="nav flex-column">
       <li class="nav-item"><a href="admin.html" class="nav-link text-white"><i class="bi bi-speedometer2 me-2"></i> Dashboard</a></li>
-      <li class="nav-item"><a href="professores.html" class="nav-link text-white active"><i class="bi bi-person-badge me-2"></i> Professores</a></li>
       <li class="nav-item"><a href="alunos.html" class="nav-link text-white"><i class="bi bi-people me-2"></i> Alunos</a></li>
+      <li class="nav-item"><a href="professores.html" class="nav-link text-white active"><i class="bi bi-person-badge me-2"></i> Professores</a></li>
       <li class="nav-item"><a href="cursos.html" class="nav-link text-white"><i class="bi bi-journal-bookmark me-2"></i> Cursos</a></li>
       <li class="nav-item"><a href="turmas.html" class="nav-link text-white"><i class="bi bi-diagram-3 me-2"></i> Turmas</a></li>
       <li class="nav-item"><a href="categorias.html" class="nav-link text-white"><i class="bi bi-tags me-2"></i> Categorias</a></li>
       <li class="nav-item"><a href="atividades.html" class="nav-link text-white"><i class="bi bi-list-check me-2"></i> Atividades</a></li>
-      <li class="nav-item"><a href="cursos.html" class="nav-link text-white"><i class="bi bi-person-gear me-2"></i> Usuários</a></li>
+      <li class="nav-item"><a href="usuarios.html" class="nav-link text-white"><i class="bi bi-person-gear me-2"></i> Usuários</a></li>
     </ul>
   </div>
 </div>
@@ -73,13 +73,13 @@
   <div class="logo"><i class="bi bi-speedometer2"></i> Admin</div>
   <ul class="nav flex-column">
     <li class="nav-item"><a href="admin.html" class="nav-link"><i class="bi bi-speedometer2 me-2"></i> Dashboard</a></li>
-    <li class="nav-item"><a href="professores.html" class="nav-link active"><i class="bi bi-person-badge me-2"></i> Professores</a></li>
     <li class="nav-item"><a href="alunos.html" class="nav-link"><i class="bi bi-people me-2"></i> Alunos</a></li>
+    <li class="nav-item"><a href="professores.html" class="nav-link active"><i class="bi bi-person-badge me-2"></i> Professores</a></li>
     <li class="nav-item"><a href="cursos.html" class="nav-link"><i class="bi bi-journal-bookmark me-2"></i> Cursos</a></li>
-    <li class="nav-item"><a href="#" class="nav-link"><i class="bi bi-diagram-3 me-2"></i> Turmas</a></li>
+    <li class="nav-item"><a href="turmas.html" class="nav-link"><i class="bi bi-diagram-3 me-2"></i> Turmas</a></li>
     <li class="nav-item"><a href="categorias.html" class="nav-link"><i class="bi bi-tags me-2"></i> Categorias</a></li>
-    <li class="nav-item"><a href="#" class="nav-link"><i class="bi bi-list-check me-2"></i> Atividades</a></li>
-    <li class="nav-item"><a href="#" class="nav-link"><i class="bi bi-person-gear me-2"></i> Usuários</a></li>
+    <li class="nav-item"><a href="atividades.html" class="nav-link"><i class="bi bi-list-check me-2"></i> Atividades</a></li>
+    <li class="nav-item"><a href="usuarios.html" class="nav-link"><i class="bi bi-person-gear me-2"></i> Usuários</a></li>
   </ul>
 </nav>
 
@@ -106,6 +106,35 @@
 
   <!-- Área Principal -->
   <div class="container mt-4">
+    <!-- Filtros -->
+    <div class="card shadow-sm mb-4">
+      <div class="card-body">
+        <h5 class="card-title mb-3"><i class="bi bi-funnel me-2"></i> Filtros</h5>
+        <form class="row g-3">
+          <div class="col-md-4">
+            <label class="form-label">Nome</label>
+            <input type="text" class="form-control" placeholder="Ex: Maria Souza">
+          </div>
+          <div class="col-md-4">
+            <label class="form-label">Turma</label>
+            <select class="form-select">
+              <option selected>Todas</option>
+              <option>Turma 1 - PHP</option>
+              <option>Turma 2 - Banco de Dados</option>
+            </select>
+          </div>
+          <div class="col-md-4">
+            <label class="form-label">Data de Cadastro</label>
+            <input type="date" class="form-control">
+          </div>
+          <div class="col-12 text-end">
+            <button class="btn btn-secondary">Limpar</button>
+            <button class="btn btn-primary">Filtrar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
     <!-- Botão Novo -->
     <div class="d-flex justify-content-between align-items-center mb-3">
       <h4>Lista de Professores</h4>
@@ -117,32 +146,29 @@
       <table class="table table-hover align-middle">
         <thead class="table-primary">
           <tr>
-            <th>Foto</th>
             <th>Nome</th>
             <th>Email</th>
-            <th>Curso</th>
-            <th>Telefone</th>
+            <th>Turma</th>
+            <th>Data Cadastro</th>
             <th class="text-center">Ações</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td><img src="https://picsum.photos/50" class="rounded-circle" width="40"></td>
             <td>Maria Souza</td>
-            <td>maria@exemplo.com</td>
-            <td>Banco de Dados</td>
-            <td>(11) 99999-9999</td>
+            <td>maria@email.com</td>
+            <td>Turma 1 - PHP</td>
+            <td>2025-01-10</td>
             <td class="text-center">
               <button class="btn btn-sm btn-warning"><i class="bi bi-pencil"></i></button>
               <button class="btn btn-sm btn-danger"><i class="bi bi-trash"></i></button>
             </td>
           </tr>
           <tr>
-            <td><img src="https://picsum.photos/51" class="rounded-circle" width="40"></td>
-            <td>Carlos Lima</td>
-            <td>carlos@exemplo.com</td>
-            <td>PHP Avançado</td>
-            <td>(21) 98888-8888</td>
+            <td>João Silva</td>
+            <td>joao@email.com</td>
+            <td>Turma 2 - Banco de Dados</td>
+            <td>2025-02-05</td>
             <td class="text-center">
               <button class="btn btn-sm btn-warning"><i class="bi bi-pencil"></i></button>
               <button class="btn btn-sm btn-danger"><i class="bi bi-trash"></i></button>
@@ -173,25 +199,15 @@
                 <input type="email" class="form-control" required>
               </div>
               <div class="col-md-6">
-                <label class="form-label">CPF</label>
-                <input type="text" class="form-control" required>
-              </div>
-              <div class="col-md-6">
-                <label class="form-label">Telefone</label>
-                <input type="text" class="form-control">
-              </div>
-              <div class="col-md-6">
-                <label class="form-label">Curso</label>
+                <label class="form-label">Turma</label>
                 <select class="form-select">
-                  <option selected>Selecione...</option>
-                  <option>Banco de Dados</option>
-                  <option>PHP Avançado</option>
-                  <option>JavaScript</option>
+                  <option>Turma 1 - PHP</option>
+                  <option>Turma 2 - Banco de Dados</option>
                 </select>
               </div>
               <div class="col-md-6">
-                <label class="form-label">Foto de Perfil</label>
-                <input type="file" class="form-control">
+                <label class="form-label">Data Cadastro</label>
+                <input type="date" class="form-control">
               </div>
             </div>
           </form>

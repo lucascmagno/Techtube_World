@@ -76,10 +76,10 @@
     <li class="nav-item"><a href="alunos.html" class="nav-link"><i class="bi bi-people me-2"></i> Alunos</a></li>
     <li class="nav-item"><a href="professores.html" class="nav-link"><i class="bi bi-person-badge me-2"></i> Professores</a></li>
     <li class="nav-item"><a href="cursos.html" class="nav-link active"><i class="bi bi-journal-bookmark me-2"></i> Cursos</a></li>
-    <li class="nav-item"><a href="#" class="nav-link"><i class="bi bi-diagram-3 me-2"></i> Turmas</a></li>
+    <li class="nav-item"><a href="turmas.html" class="nav-link"><i class="bi bi-diagram-3 me-2"></i> Turmas</a></li>
     <li class="nav-item"><a href="categorias.html" class="nav-link"><i class="bi bi-tags me-2"></i> Categorias</a></li>
-    <li class="nav-item"><a href="#" class="nav-link"><i class="bi bi-list-check me-2"></i> Atividades</a></li>
-    <li class="nav-item"><a href="#" class="nav-link"><i class="bi bi-person-gear me-2"></i> Usuários</a></li>
+    <li class="nav-item"><a href="atividades.html" class="nav-link"><i class="bi bi-list-check me-2"></i> Atividades</a></li>
+    <li class="nav-item"><a href="usuarios.html" class="nav-link"><i class="bi bi-person-gear me-2"></i> Usuários</a></li>
   </ul>
 </nav>
 
@@ -106,6 +106,44 @@
 
   <!-- Área Principal -->
   <div class="container mt-4">
+    <!-- Filtros -->
+    <div class="card shadow-sm mb-4">
+      <div class="card-body">
+        <h5 class="card-title mb-3"><i class="bi bi-funnel me-2"></i> Filtros</h5>
+        <form class="row g-3">
+          <div class="col-md-3">
+            <label class="form-label">Nome do Curso</label>
+            <input type="text" class="form-control" placeholder="Ex: Introdução ao PHP">
+          </div>
+          <div class="col-md-3">
+            <label class="form-label">Categoria</label>
+            <select class="form-select">
+              <option selected>Todas</option>
+              <option>Programação</option>
+              <option>Banco de Dados</option>
+              <option>Design</option>
+            </select>
+          </div>
+          <div class="col-md-3">
+            <label class="form-label">Professor</label>
+            <select class="form-select">
+              <option selected>Todos</option>
+              <option>Maria Souza</option>
+              <option>João Silva</option>
+            </select>
+          </div>
+          <div class="col-md-3">
+            <label class="form-label">Data de Criação</label>
+            <input type="date" class="form-control">
+          </div>
+          <div class="col-12 text-end">
+            <button class="btn btn-secondary">Limpar</button>
+            <button class="btn btn-primary">Filtrar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
     <!-- Botão Novo -->
     <div class="d-flex justify-content-between align-items-center mb-3">
       <h4>Lista de Cursos</h4>
@@ -117,32 +155,29 @@
       <table class="table table-hover align-middle">
         <thead class="table-primary">
           <tr>
-            <th>Imagem</th>
             <th>Nome</th>
             <th>Categoria</th>
             <th>Professor</th>
-            <th>Inscritos</th>
+            <th>Data Criação</th>
             <th class="text-center">Ações</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td><img src="https://picsum.photos/60" class="rounded" width="50"></td>
-            <td>Banco de Dados Avançado</td>
-            <td>Tecnologia</td>
+            <td>Introdução ao PHP</td>
+            <td>Programação</td>
             <td>Maria Souza</td>
-            <td>120</td>
+            <td>2025-01-12</td>
             <td class="text-center">
               <button class="btn btn-sm btn-warning"><i class="bi bi-pencil"></i></button>
               <button class="btn btn-sm btn-danger"><i class="bi bi-trash"></i></button>
             </td>
           </tr>
           <tr>
-            <td><img src="https://picsum.photos/61" class="rounded" width="50"></td>
-            <td>PHP Moderno</td>
-            <td>Programação</td>
-            <td>Carlos Lima</td>
-            <td>98</td>
+            <td>Banco de Dados MySQL</td>
+            <td>Banco de Dados</td>
+            <td>João Silva</td>
+            <td>2025-02-01</td>
             <td class="text-center">
               <button class="btn btn-sm btn-warning"><i class="bi bi-pencil"></i></button>
               <button class="btn btn-sm btn-danger"><i class="bi bi-trash"></i></button>
@@ -158,7 +193,7 @@
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header bg-primary text-white">
-          <h5 class="modal-title"><i class="bi bi-journal-plus me-2"></i> Novo Curso</h5>
+          <h5 class="modal-title"><i class="bi bi-plus-circle me-2"></i> Novo Curso</h5>
           <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
         </div>
         <div class="modal-body">
@@ -171,32 +206,21 @@
               <div class="col-md-6">
                 <label class="form-label">Categoria</label>
                 <select class="form-select">
-                  <option selected>Selecione...</option>
-                  <option>Tecnologia</option>
                   <option>Programação</option>
+                  <option>Banco de Dados</option>
                   <option>Design</option>
                 </select>
-              </div>
-              <div class="col-md-12">
-                <label class="form-label">Descrição</label>
-                <textarea class="form-control" rows="3"></textarea>
               </div>
               <div class="col-md-6">
                 <label class="form-label">Professor</label>
                 <select class="form-select">
-                  <option selected>Selecione...</option>
                   <option>Maria Souza</option>
-                  <option>Carlos Lima</option>
-                  <option>Fernanda Oliveira</option>
+                  <option>João Silva</option>
                 </select>
               </div>
               <div class="col-md-6">
-                <label class="form-label">Imagem</label>
-                <input type="file" class="form-control">
-              </div>
-              <div class="col-md-12">
-                <label class="form-label">Vídeo (URL)</label>
-                <input type="text" class="form-control">
+                <label class="form-label">Data Criação</label>
+                <input type="date" class="form-control">
               </div>
             </div>
           </form>

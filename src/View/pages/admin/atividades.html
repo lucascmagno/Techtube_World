@@ -106,6 +106,35 @@
 
   <!-- Área Principal -->
   <div class="container mt-4">
+    <!-- Filtros -->
+    <div class="card shadow-sm mb-4">
+      <div class="card-body">
+        <h5 class="card-title mb-3"><i class="bi bi-funnel me-2"></i> Filtros</h5>
+        <form class="row g-3">
+          <div class="col-md-4">
+            <label class="form-label">Nome da Atividade</label>
+            <input type="text" class="form-control" placeholder="Ex: Exercícios PHP">
+          </div>
+          <div class="col-md-4">
+            <label class="form-label">Curso</label>
+            <select class="form-select">
+              <option selected>Todos</option>
+              <option>Introdução ao PHP</option>
+              <option>Banco de Dados MySQL</option>
+            </select>
+          </div>
+          <div class="col-md-4">
+            <label class="form-label">Data de Entrega</label>
+            <input type="date" class="form-control">
+          </div>
+          <div class="col-12 text-end">
+            <button class="btn btn-secondary">Limpar</button>
+            <button class="btn btn-primary">Filtrar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
     <!-- Botão Novo -->
     <div class="d-flex justify-content-between align-items-center mb-3">
       <h4>Lista de Atividades</h4>
@@ -117,29 +146,26 @@
       <table class="table table-hover align-middle">
         <thead class="table-primary">
           <tr>
-            <th>Título</th>
+            <th>Nome</th>
             <th>Curso</th>
-            <th>Descrição</th>
-            <th>Data Criação</th>
+            <th>Data Entrega</th>
             <th class="text-center">Ações</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>Projeto Final</td>
-            <td>Banco de Dados Avançado</td>
-            <td>Criação de modelo relacional completo.</td>
-            <td>2025-08-10</td>
+            <td>Exercícios Básicos PHP</td>
+            <td>Introdução ao PHP</td>
+            <td>2025-02-10</td>
             <td class="text-center">
               <button class="btn btn-sm btn-warning"><i class="bi bi-pencil"></i></button>
               <button class="btn btn-sm btn-danger"><i class="bi bi-trash"></i></button>
             </td>
           </tr>
           <tr>
-            <td>Lista de Exercícios</td>
-            <td>PHP Moderno</td>
-            <td>Exercícios práticos de sintaxe e orientação a objetos.</td>
-            <td>2025-08-15</td>
+            <td>Modelagem de BD</td>
+            <td>Banco de Dados MySQL</td>
+            <td>2025-03-01</td>
             <td class="text-center">
               <button class="btn btn-sm btn-warning"><i class="bi bi-pencil"></i></button>
               <button class="btn btn-sm btn-danger"><i class="bi bi-trash"></i></button>
@@ -155,28 +181,30 @@
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header bg-primary text-white">
-          <h5 class="modal-title"><i class="bi bi-list-plus me-2"></i> Nova Atividade</h5>
+          <h5 class="modal-title"><i class="bi bi-plus-circle me-2"></i> Nova Atividade</h5>
           <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
         </div>
         <div class="modal-body">
           <form>
             <div class="row g-3">
               <div class="col-md-6">
-                <label class="form-label">Título da Atividade</label>
+                <label class="form-label">Nome da Atividade</label>
                 <input type="text" class="form-control" required>
               </div>
               <div class="col-md-6">
-                <label class="form-label">Curso Relacionado</label>
+                <label class="form-label">Curso</label>
                 <select class="form-select">
-                  <option selected>Selecione...</option>
-                  <option>Banco de Dados Avançado</option>
-                  <option>PHP Moderno</option>
-                  <option>Design UI/UX</option>
+                  <option>Introdução ao PHP</option>
+                  <option>Banco de Dados MySQL</option>
                 </select>
               </div>
-              <div class="col-md-12">
+              <div class="col-md-6">
+                <label class="form-label">Data de Entrega</label>
+                <input type="date" class="form-control">
+              </div>
+              <div class="col-md-6">
                 <label class="form-label">Descrição</label>
-                <textarea class="form-control" rows="3"></textarea>
+                <textarea class="form-control" rows="1"></textarea>
               </div>
             </div>
           </form>
