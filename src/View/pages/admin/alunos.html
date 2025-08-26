@@ -160,8 +160,8 @@
             <td>Turma 1 - PHP</td>
             <td>2025-03-15</td>
             <td class="text-center">
-              <button class="btn btn-sm btn-warning"><i class="bi bi-pencil"></i></button>
-              <button class="btn btn-sm btn-danger"><i class="bi bi-trash"></i></button>
+              <button class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#modalEditAluno"><i class="bi bi-pencil"></i></button>
+              <button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#modalDeleteAluno"><i class="bi bi-trash"></i></button>
             </td>
           </tr>
           <tr>
@@ -170,8 +170,8 @@
             <td>Turma 2 - Banco de Dados</td>
             <td>2025-02-28</td>
             <td class="text-center">
-              <button class="btn btn-sm btn-warning"><i class="bi bi-pencil"></i></button>
-              <button class="btn btn-sm btn-danger"><i class="bi bi-trash"></i></button>
+              <button class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#modalEditAluno"><i class="bi bi-pencil"></i></button>
+              <button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#modalDeleteAluno"><i class="bi bi-trash"></i></button>
             </td>
           </tr>
         </tbody>
@@ -219,6 +219,66 @@
       </div>
     </div>
   </div>
+
+  <!-- Modal Editar Aluno -->
+<div class="modal fade" id="modalEditAluno" tabindex="-1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header bg-warning text-dark">
+        <h5 class="modal-title"><i class="bi bi-pencil-square me-2"></i> Editar Aluno</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <form class="row g-3">
+          <div class="col-md-6">
+            <label class="form-label">Nome</label>
+            <input type="text" class="form-control" value="Maria Oliveira">
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Email</label>
+            <input type="email" class="form-control" value="maria@email.com">
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Turma</label>
+            <select class="form-select">
+              <option selected>Turma A</option>
+              <option>Turma B</option>
+              <option>Turma C</option>
+            </select>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Data de Cadastro</label>
+            <input type="date" class="form-control" value="2025-01-15">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button class="btn btn-warning">Salvar Alterações</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Excluir Aluno -->
+<div class="modal fade" id="modalDeleteAluno" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header bg-danger text-white">
+        <h5 class="modal-title"><i class="bi bi-exclamation-triangle me-2"></i> Confirmar Exclusão</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <p>Tem certeza que deseja enviar este <strong>Aluno</strong> para a lixeira?</p>
+        <p class="text-muted mb-0"><small>Você poderá restaurar esse registro depois, caso necessário.</small></p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button class="btn btn-danger">Sim, enviar para a lixeira</button>
+      </div>
+    </div>
+  </div>
+</div>
 
   <!-- Footer -->
   <footer class="mt-5 px-3">

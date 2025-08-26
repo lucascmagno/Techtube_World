@@ -148,16 +148,16 @@
             <td>Programação</td>
             <td>2025-01-05</td>
             <td class="text-center">
-              <button class="btn btn-sm btn-warning"><i class="bi bi-pencil"></i></button>
-              <button class="btn btn-sm btn-danger"><i class="bi bi-trash"></i></button>
+              <button class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#modalEditCategoria"><i class="bi bi-pencil"></i></button>
+              <button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#modalDeleteCategoria"><i class="bi bi-trash"></i></button>
             </td>
           </tr>
           <tr>
             <td>Banco de Dados</td>
             <td>2025-02-01</td>
             <td class="text-center">
-              <button class="btn btn-sm btn-warning"><i class="bi bi-pencil"></i></button>
-              <button class="btn btn-sm btn-danger"><i class="bi bi-trash"></i></button>
+              <button class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#modalEditCategoria"><i class="bi bi-pencil"></i></button>
+              <button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#modalDeleteCategoria"><i class="bi bi-trash"></i></button>
             </td>
           </tr>
         </tbody>
@@ -192,6 +192,54 @@
       </div>
     </div>
   </div>
+
+  <!-- Modal Editar Categoria -->
+<div class="modal fade" id="modalEditCategoria" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header bg-warning text-dark">
+        <h5 class="modal-title"><i class="bi bi-pencil-square me-2"></i> Editar Categoria</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <form class="row g-3">
+          <div class="col-12">
+            <label class="form-label">Nome da Categoria</label>
+            <input type="text" class="form-control" value="Programação">
+          </div>
+          <div class="col-12">
+            <label class="form-label">Descrição</label>
+            <textarea class="form-control" rows="3">Cursos relacionados à área de programação e desenvolvimento.</textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button class="btn btn-warning">Salvar Alterações</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Excluir Categoria -->
+<div class="modal fade" id="modalDeleteCategoria" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header bg-danger text-white">
+        <h5 class="modal-title"><i class="bi bi-exclamation-triangle me-2"></i> Confirmar Exclusão</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <p>Tem certeza que deseja enviar esta <strong>Categoria</strong> para a lixeira?</p>
+        <p class="text-muted mb-0"><small>Os cursos associados continuarão existindo, mas ficarão sem categoria vinculada.</small></p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button class="btn btn-danger">Sim, enviar para a lixeira</button>
+      </div>
+    </div>
+  </div>
+</div>
 
   <!-- Footer -->
   <footer class="mt-5 px-3">
