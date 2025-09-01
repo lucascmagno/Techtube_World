@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-bs-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TechTube World - Atividades</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <style>
+    body { background-color: var(--bs-body-bg); }
+
+    /* Sidebar */
+    .sidebar {
+      position: fixed; top: 0; left: 0; bottom: 0;
+      width: 220px; background-color: #0d6efd; color: #fff;
+      overflow-y: auto; z-index: 1020; display: none;
+    }
+    @media (min-width: 768px) {
+      .sidebar { display: block; }
+      .main-content { margin-left: 220px; }
+    }
+    .sidebar a {
+      color: #fff !important; text-decoration: none;
+      display: flex; align-items: center;
+      padding: 10px 15px; border-radius: 6px 0 0 6px;
+      margin: 5px 0; position: relative; transition: all 0.2s;
+    }
+    .sidebar a:hover, .sidebar a.active { background-color: #0b5ed7; }
+    .sidebar a:hover::after, .sidebar a.active::after {
+      content: ""; position: absolute; right: 0; top: 0;
+      height: 100%; width: 4px; background-color: #DC3DEB;
+      border-radius: 0 4px 4px 0;
+    }
+    .sidebar .logo {
+      font-size: 1.3rem; font-weight: bold;
+      padding: 20px 15px; display: flex; align-items: center; gap: 10px;
+    }
+
+    /* Offcanvas mobile */
+    .offcanvas { background-color: #0d6efd !important; color: #fff; }
+
+    /* Footer */
+    footer { background-color: #0d6efd; color: #fff; padding: 40px 20px; margin-top: 40px; }
+    footer a { color: #fff; text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    /* Botão Top */
+    #btnTop {
+      position: fixed; bottom: 20px; right: 20px;
+      border-radius: 50%; padding: 12px;
+      background-color: #DC3DEB; color: #fff; border: none;
+      display: none; z-index: 1050;
+    }
+
+    .navbar-top { z-index: 1030; }
+    .nav-profile-img { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; cursor: pointer; }
+  </style>
+</head>
+<body class="bg-light">
+
+<!-- Navbar Mobile -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary d-md-none">
+  <div class="container-fluid">
+    <a class="navbar-brand fw-bold" href="#"><i class="bi bi-mortarboard-fill"></i> Professor</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Offcanvas Menu (Mobile) -->
+<div class="offcanvas offcanvas-start text-white" tabindex="-1" id="mobileMenu">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title"><i class="bi bi-mortarboard-fill me-2"></i> Painel Professor</h5>
+    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
+  </div>
+  <div class="offcanvas-body">
+    <ul class="nav flex-column">
+      <li class="nav-item"><a href="dashboard-prof.html" class="nav-link text-white"><i class="bi bi-speedometer2 me-2"></i> Dashboard</a></li>
+      <li class="nav-item"><a href="meus-cursos.html" class="nav-link text-white"><i class="bi bi-journal-bookmark me-2"></i> Meus Cursos</a></li>
+      <li class="nav-item"><a href="criar-curso.html" class="nav-link text-white"><i class="bi bi-plus-circle me-2"></i> Criar Curso</a></li>
+      <li class="nav-item"><a href="turmas.html" class="nav-link text-white"><i class="bi bi-diagram-3 me-2"></i> Turmas</a></li>
+      <li class="nav-item"><a href="atividades.html" class="nav-link text-white active"><i class="bi bi-list-check me-2"></i> Atividades</a></li>
+    </ul>
+  </div>
+</div>
+
+<!-- Sidebar (Desktop) -->
+<nav class="sidebar p-3">
+  <div class="logo"><i class="bi bi-mortarboard-fill"></i> Professor</div>
+  <ul class="nav flex-column">
+    <li class="nav-item"><a href="dashboard-prof.html"><i class="bi bi-speedometer2 me-2"></i> Dashboard</a></li>
+    <li class="nav-item"><a href="meus-cursos.html"><i class="bi bi-journal-bookmark me-2"></i> Meus Cursos</a></li>
+    <li class="nav-item"><a href="criar-curso.html"><i class="bi bi-plus-circle me-2"></i> Criar Curso</a></li>
+    <li class="nav-item"><a href="turmas.html"><i class="bi bi-diagram-3 me-2"></i> Turmas</a></li>
+    <li class="nav-item"><a href="atividades.html" class="active"><i class="bi bi-list-check me-2"></i> Atividades</a></li>
+  </ul>
+</nav>
+
+<!-- Conteúdo -->
+<main class="main-content">
+  <!-- Navbar Topo -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm sticky-top navbar-top px-3">
+    <h5 class="mb-0"><i class="bi bi-list-check me-2"></i> Minhas Atividades</h5>
+    <ul class="navbar-nav ms-auto align-items-center">
+      <li class="nav-item me-3"><a href="#" class="nav-link"><i class="bi bi-bell fs-5"></i></a></li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" data-bs-toggle="dropdown">
+          <img src="https://picsum.photos/200" class="nav-profile-img" alt="Perfil">
+        </a>
+        <ul class="dropdown-menu dropdown-menu-end">
+          <li><a class="dropdown-item" href="#">Meu Perfil</a></li>
+          <li><a class="dropdown-item" href="#">Trocar Conta</a></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><a class="dropdown-item text-danger" href="#">Sair</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+
+  <div class="container mt-4">
+    <div class="d-flex justify-content-between mb-3">
+      <h3><i class="bi bi-list-check me-2"></i> Minhas Atividades</h3>
+      <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalNovaAtividade">
+        <i class="bi bi-plus-circle me-1"></i> Nova Atividade
+      </button>
+    </div>
+
+    <!-- Listagem Atividades -->
+    <div class="row g-4">
+      <div class="col-12 col-md-6">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title">Atividade 1 - Introdução ao PHP</h5>
+            <p class="text-muted"><i class="bi bi-journal-bookmark me-1"></i> Curso: PHP Básico</p>
+            <p class="text-muted"><i class="bi bi-calendar me-1"></i> Criada em: 12/02/2025</p>
+            <p class="card-text">Escreva um programa simples em PHP que exiba "Olá Mundo"... </p>
+            <div class="d-flex justify-content-between">
+              <a href="#" class="btn btn-outline-info btn-sm"><i class="bi bi-eye"></i> Visualizar</a>
+              <a href="#" class="btn btn-outline-primary btn-sm"><i class="bi bi-pencil"></i> Editar</a>
+              <a href="#" class="btn btn-outline-danger btn-sm"><i class="bi bi-trash"></i> Excluir</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Outra atividade -->
+      <div class="col-12 col-md-6">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title">Atividade 2 - Banco de Dados</h5>
+            <p class="text-muted"><i class="bi bi-journal-bookmark me-1"></i> Curso: Banco de Dados Relacional</p>
+            <p class="text-muted"><i class="bi bi-calendar me-1"></i> Criada em: 10/02/2025</p>
+            <p class="card-text">Explique a diferença entre chave primária e chave estrangeira...</p>
+            <div class="d-flex justify-content-between">
+              <a href="#" class="btn btn-outline-info btn-sm"><i class="bi bi-eye"></i> Visualizar</a>
+              <a href="#" class="btn btn-outline-primary btn-sm"><i class="bi bi-pencil"></i> Editar</a>
+              <a href="#" class="btn btn-outline-danger btn-sm"><i class="bi bi-trash"></i> Excluir</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="mt-5 px-3">
+    <div class="text-center">
+      <small>&copy; 2025 TechTube World - Painel do Professor</small>
+    </div>
+  </footer>
+</main>
+
+<!-- Modal Nova Atividade -->
+<div class="modal fade" id="modalNovaAtividade" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <form>
+        <div class="modal-header bg-primary text-white">
+          <h5 class="modal-title"><i class="bi bi-plus-circle me-2"></i> Criar Nova Atividade</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label class="form-label">Título da Atividade</label>
+            <input type="text" class="form-control" placeholder="Digite o título da atividade">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Curso Vinculado</label>
+            <select class="form-select">
+              <option>Selecione um curso</option>
+              <option>Introdução ao PHP</option>
+              <option>JavaScript Avançado</option>
+              <option>Banco de Dados Relacional</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Conteúdo</label>
+            <textarea class="form-control" rows="6" placeholder="Digite o conteúdo da atividade..."></textarea>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Imagens/Vídeos</label>
+            <input type="file" class="form-control" multiple>
+            <small class="text-muted">Você pode adicionar várias imagens e vídeos.</small>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="submit" class="btn btn-primary">Salvar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Botão Top -->
+<button id="btnTop"><i class="bi bi-arrow-up"></i></button>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  const btnTop = document.getElementById("btnTop");
+  window.onscroll = () => btnTop.style.display = window.scrollY > 200 ? "block" : "none";
+  btnTop.onclick = () => window.scrollTo({top:0, behavior:"smooth"});
+</script>
+</body>
+</html>
