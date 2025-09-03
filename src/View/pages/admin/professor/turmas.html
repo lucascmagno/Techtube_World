@@ -101,7 +101,10 @@
 <main class="main-content">
   <!-- Navbar Topo -->
   <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm sticky-top navbar-top px-3">
-    <h5 class="mb-0"><i class="bi bi-diagram-3 me-2"></i> Minhas Turmas</h5>
+    <form class="d-flex me-auto w-50">
+      <input class="form-control me-2" type="search" placeholder="Pesquisar turma..." aria-label="Pesquisar">
+      <button class="btn btn-outline-primary" type="submit"><i class="bi bi-search"></i></button>
+    </form>
     <ul class="navbar-nav ms-auto align-items-center">
       <li class="nav-item me-3"><a href="#" class="nav-link"><i class="bi bi-bell fs-5"></i></a></li>
       <li class="nav-item dropdown">
@@ -118,47 +121,51 @@
     </ul>
   </nav>
 
+  <!-- Listagem de Turmas -->
   <div class="container mt-4">
-    <div class="d-flex justify-content-between mb-3">
+    <div class="d-flex justify-content-between align-items-center mb-4">
       <h3><i class="bi bi-diagram-3 me-2"></i> Minhas Turmas</h3>
-      <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalNovaTurma">
-        <i class="bi bi-plus-circle me-1"></i> Nova Turma
-      </button>
+      <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addTurmaModal"><i class="bi bi-plus-lg me-1"></i> Nova Turma</button>
     </div>
 
-    <!-- Listagem Turmas -->
-    <div class="row g-4">
-      <div class="col-12 col-md-6 col-lg-4">
-        <div class="card shadow-sm">
-          <div class="card-body">
-            <h5 class="card-title">Turma A - PHP Básico</h5>
-            <p class="text-muted"><i class="bi bi-people me-1"></i> 25 alunos</p>
-            <p class="text-muted"><i class="bi bi-journal-bookmark me-1"></i> Curso: Introdução ao PHP</p>
-            <div class="d-flex justify-content-between">
-              <a href="#" class="btn btn-outline-info btn-sm"><i class="bi bi-eye"></i> Visualizar</a>
-              <a href="#" class="btn btn-outline-primary btn-sm"><i class="bi bi-pencil"></i> Editar</a>
-              <a href="#" class="btn btn-outline-danger btn-sm"><i class="bi bi-trash"></i> Excluir</a>
-            </div>
-          </div>
+    <!-- Card Turma -->
+    <div class="card shadow-sm mb-3">
+      <div class="card-body d-flex flex-column flex-md-row justify-content-between align-items-md-center">
+        <div>
+          <h5 class="card-title mb-1">Turma A - 2025</h5>
+          <p class="text-muted mb-0">
+            <i class="bi bi-journal-bookmark me-1"></i> Introdução ao PHP <br>
+            <i class="bi bi-person-badge me-1"></i> Prof. Carlos Lima
+          </p>
         </div>
-      </div>
+        <div class="mt-3 mt-md-0 d-flex gap-2">
+          <button class="btn btn-outline-info btn-sm"
+                  onclick="openViewTurmaModal({
+                    nome_turma: 'Turma A - 2025',
+                    curso_nome: 'Introdução ao PHP',
+                    professor_nome: 'Carlos Lima',
+                    data_inicio: '2025-02-01',
+                    data_fim: '2025-06-30',
+                    alunos: [
+                      { matricula: '2023001', nome: 'Maria Souza', email: 'maria.souza@example.com', telefone: '(11) 99999-1111' },
+                      { matricula: '2023002', nome: 'João Santos', email: 'joao.santos@example.com', telefone: '(21) 98888-2222' },
+                      { matricula: '2023003', nome: 'Pedro Henrique', email: 'pedro.henrique@example.com', telefone: '(31) 97777-3333' }
+                    ]
+                  })">
+            <i class="bi bi-eye"></i> Visualizar
+          </button>
 
-      <!-- Outra turma exemplo -->
-      <div class="col-12 col-md-6 col-lg-4">
-        <div class="card shadow-sm">
-          <div class="card-body">
-            <h5 class="card-title">Turma B - JavaScript Avançado</h5>
-            <p class="text-muted"><i class="bi bi-people me-1"></i> 30 alunos</p>
-            <p class="text-muted"><i class="bi bi-journal-bookmark me-1"></i> Curso: JS Avançado</p>
-            <div class="d-flex justify-content-between">
-              <a href="#" class="btn btn-outline-info btn-sm"><i class="bi bi-eye"></i> Visualizar</a>
-              <a href="#" class="btn btn-outline-primary btn-sm"><i class="bi bi-pencil"></i> Editar</a>
-              <a href="#" class="btn btn-outline-danger btn-sm"><i class="bi bi-trash"></i> Excluir</a>
-            </div>
-          </div>
+          <button class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editTurmaModal">
+            <i class="bi bi-pencil"></i> Editar
+          </button>
+
+          <button class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteTurmaModal">
+            <i class="bi bi-trash"></i> Excluir
+          </button>
         </div>
       </div>
     </div>
+
   </div>
 
   <!-- Footer -->
@@ -168,6 +175,9 @@
     </div>
   </footer>
 </main>
+
+<!-- Botão Top -->
+<button id="btnTop"><i class="bi bi-arrow-up"></i></button>
 
 <!-- Modal Nova Turma -->
 <div class="modal fade" id="modalNovaTurma" tabindex="-1" aria-hidden="true">
@@ -212,14 +222,226 @@
   </div>
 </div>
 
-<!-- Botão Top -->
-<button id="btnTop"><i class="bi bi-arrow-up"></i></button>
+<!-- Modal Editar Turma -->
+<div class="modal fade" id="editTurmaModal" tabindex="-1" aria-labelledby="editTurmaModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header bg-warning text-dark">
+        <h5 class="modal-title" id="editTurmaModalLabel"><i class="bi bi-pencil-square me-2"></i> Editar Turma</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <form id="formEditTurma">
+        <div class="modal-body">
+          <input type="hidden" id="editTurmaId">
+          <div class="mb-3">
+            <label class="form-label">Nome da Turma</label>
+            <input type="text" class="form-control" id="editNomeTurma" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Curso</label>
+            <select class="form-select" id="editCursoTurma" required>
+              <option value="">Selecione um curso</option>
+              <!-- dinâmico -->
+            </select>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Professor</label>
+            <select class="form-select" id="editProfessorTurma" required>
+              <option value="">Selecione um professor</option>
+              <!-- dinâmico -->
+            </select>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Alunos</label>
+            <select class="form-select" multiple id="editAlunosTurma">
+              <!-- dinâmico -->
+            </select>
+          </div>
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label class="form-label">Data Início</label>
+              <input type="date" class="form-control" id="editDataInicioTurma" required>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label class="form-label">Data Fim</label>
+              <input type="date" class="form-control" id="editDataFimTurma" required>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="submit" class="btn btn-warning">Salvar Alterações</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Excluir Turma -->
+<div class="modal fade" id="deleteTurmaModal" tabindex="-1" aria-labelledby="deleteTurmaModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header bg-danger text-white">
+        <h5 class="modal-title" id="deleteTurmaModalLabel"><i class="bi bi-trash me-2"></i> Excluir Turma</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <p>Tem certeza que deseja excluir esta turma?</p>
+        <input type="hidden" id="deleteTurmaId">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-danger" id="confirmDeleteTurma">Excluir</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Visualizar Turma -->
+<div class="modal fade" id="viewTurmaModal" tabindex="-1" aria-labelledby="viewTurmaModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header bg-info text-white">
+        <h5 class="modal-title" id="viewTurmaModalLabel">
+          <i class="bi bi-eye me-2"></i> Visualizar Turma
+        </h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Fechar"></button>
+      </div>
+
+      <div class="modal-body">
+        <!-- Resumo da Turma -->
+        <div class="row g-3 mb-3">
+          <div class="col-sm-6 col-lg-4">
+            <div class="border rounded p-2">
+              <small class="text-muted d-block">Nome da Turma</small>
+              <div class="fw-semibold" id="vwNomeTurma">Turma A - 2025</div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-lg-4">
+            <div class="border rounded p-2">
+              <small class="text-muted d-block">Curso</small>
+              <div class="fw-semibold" id="vwCurso">Introdução ao PHP</div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-lg-4">
+            <div class="border rounded p-2">
+              <small class="text-muted d-block">Professor</small>
+              <div class="fw-semibold" id="vwProfessor">Carlos Lima</div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-lg-4">
+            <div class="border rounded p-2">
+              <small class="text-muted d-block">Data Início</small>
+              <div class="fw-semibold" id="vwDataInicio">2025-02-01</div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-lg-4">
+            <div class="border rounded p-2">
+              <small class="text-muted d-block">Data Fim</small>
+              <div class="fw-semibold" id="vwDataFim">2025-06-30</div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-lg-4">
+            <div class="border rounded p-2">
+              <small class="text-muted d-block">Quantidade de Alunos</small>
+              <div class="fw-semibold"><span id="vwQtdAlunos">0</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Toolbar da lista -->
+        <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-2">
+          <h6 class="mb-0">
+            <i class="bi bi-people me-2"></i> Alunos da Turma
+          </h6>
+          <div class="input-group input-group-sm" style="max-width: 320px;">
+            <span class="input-group-text"><i class="bi bi-search"></i></span>
+            <input type="text" class="form-control" id="vwFiltroAluno" placeholder="Pesquisar por nome, matrícula ou email...">
+          </div>
+        </div>
+
+        <!-- Tabela de alunos -->
+        <div class="table-responsive mt-3">
+          <table class="table table-hover table-sm align-middle mb-0">
+            <thead class="table-light">
+              <tr>
+                <th style="width: 120px;">Matrícula</th>
+                <th>Nome</th>
+                <th>Email</th>
+                <th style="width: 140px;">Telefone</th>
+              </tr>
+            </thead>
+            <tbody id="vwTabelaAlunos">
+              <!-- Linhas de exemplo (remova quando popular dinamicamente) -->
+              <tr>
+                <td>2023001</td>
+                <td>Maria Souza</td>
+                <td>maria.souza@example.com</td>
+                <td>(11) 99999-1111</td>
+              </tr>
+              <tr>
+                <td>2023002</td>
+                <td>João Santos</td>
+                <td>joao.santos@example.com</td>
+                <td>(21) 98888-2222</td>
+              </tr>
+              <tr>
+                <td>2023003</td>
+                <td>Pedro Henrique</td>
+                <td>pedro.henrique@example.com</td>
+                <td>(31) 97777-3333</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
   const btnTop = document.getElementById("btnTop");
   window.onscroll = () => btnTop.style.display = window.scrollY > 200 ? "block" : "none";
   btnTop.onclick = () => window.scrollTo({top:0, behavior:"smooth"});
+</script>
+
+<!-- JS do modal visualizar -->
+<script>
+  function openViewTurmaModal(data) {
+    const setText = (id, val) => { const el = document.getElementById(id); if (el) el.textContent = val ?? ''; };
+
+    setText('vwNomeTurma',   data?.nome_turma);
+    setText('vwCurso',       data?.curso_nome);
+    setText('vwProfessor',   data?.professor_nome);
+    setText('vwDataInicio',  data?.data_inicio);
+    setText('vwDataFim',     data?.data_fim);
+
+    const tbody = document.getElementById('vwTabelaAlunos');
+    const qtdEl = document.getElementById('vwQtdAlunos');
+    if (tbody && Array.isArray(data?.alunos)) {
+      tbody.innerHTML = data.alunos.map(a => `
+        <tr>
+          <td>${a.matricula ?? ''}</td>
+          <td>${a.nome ?? ''}</td>
+          <td>${a.email ?? ''}</td>
+          <td>${a.telefone ?? ''}</td>
+        </tr>
+      `).join('');
+      qtdEl.textContent = data.alunos.length;
+    }
+
+    const modalEl = document.getElementById('viewTurmaModal');
+    if (modalEl) {
+      const modal = bootstrap.Modal.getOrCreateInstance(modalEl);
+      modal.show();
+    }
+  }
 </script>
 </body>
 </html>

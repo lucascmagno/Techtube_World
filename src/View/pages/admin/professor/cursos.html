@@ -148,9 +148,14 @@
             <h5 class="card-title">Introdução ao PHP</h5>
             <p class="text-muted"><i class="bi bi-people me-1"></i> 120 alunos</p>
             <div class="d-flex justify-content-between">
-              <a href="#" class="btn btn-outline-primary btn-sm"><i class="bi bi-pencil"></i> Editar</a>
-              <a href="#" class="btn btn-outline-danger btn-sm"><i class="bi bi-trash"></i> Excluir</a>
+              <button class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editCursoModal">
+                <i class="bi bi-pencil"></i> Editar
+              </button>
+              <button class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteCursoModal">
+                <i class="bi bi-trash"></i> Excluir
+              </button>
             </div>
+
           </div>
         </div>
       </div>
@@ -163,8 +168,12 @@
             <h5 class="card-title">Banco de Dados Relacional</h5>
             <p class="text-muted"><i class="bi bi-people me-1"></i> 90 alunos</p>
             <div class="d-flex justify-content-between">
-              <a href="#" class="btn btn-outline-primary btn-sm"><i class="bi bi-pencil"></i> Editar</a>
-              <a href="#" class="btn btn-outline-danger btn-sm"><i class="bi bi-trash"></i> Excluir</a>
+              <button class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editCursoModal">
+                <i class="bi bi-pencil"></i> Editar
+              </button>
+              <button class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteCursoModal">
+                <i class="bi bi-trash"></i> Excluir
+              </button>
             </div>
           </div>
         </div>
@@ -178,14 +187,81 @@
             <h5 class="card-title">JavaScript Avançado</h5>
             <p class="text-muted"><i class="bi bi-people me-1"></i> 150 alunos</p>
             <div class="d-flex justify-content-between">
-              <a href="#" class="btn btn-outline-primary btn-sm"><i class="bi bi-pencil"></i> Editar</a>
-              <a href="#" class="btn btn-outline-danger btn-sm"><i class="bi bi-trash"></i> Excluir</a>
+              <button class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editCursoModal">
+                <i class="bi bi-pencil"></i> Editar
+              </button>
+              <button class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteCursoModal">
+                <i class="bi bi-trash"></i> Excluir
+              </button>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+
+  <!-- Modal Editar Curso -->
+<div class="modal fade" id="editCursoModal" tabindex="-1" aria-labelledby="editCursoModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header bg-warning text-dark">
+        <h5 class="modal-title" id="editCursoModalLabel"><i class="bi bi-pencil-square me-2"></i> Editar Curso</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <form id="formEditCurso">
+        <div class="modal-body">
+          <input type="hidden" id="editCursoId">
+          <div class="mb-3">
+            <label class="form-label">Nome do Curso</label>
+            <input type="text" class="form-control" id="editNomeCurso" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Descrição</label>
+            <textarea class="form-control" rows="3" id="editDescricaoCurso" required></textarea>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Categoria</label>
+            <select class="form-select" id="editCategoriaCurso" required>
+              <option value="">Selecione uma categoria</option>
+              <option value="TI">Tecnologia</option>
+              <option value="Design">Design</option>
+              <option value="Negocios">Negócios</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Imagem de Capa</label>
+            <input type="file" class="form-control" id="editImagemCurso">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="submit" class="btn btn-warning">Salvar Alterações</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Excluir Curso -->
+<div class="modal fade" id="deleteCursoModal" tabindex="-1" aria-labelledby="deleteCursoModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header bg-danger text-white">
+        <h5 class="modal-title" id="deleteCursoModalLabel"><i class="bi bi-trash me-2"></i> Excluir Curso</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <p>Tem certeza que deseja excluir este curso?</p>
+        <input type="hidden" id="deleteCursoId">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-danger" id="confirmDeleteCurso">Excluir</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 
   <!-- Footer -->
   <footer class="mt-5 px-3">
