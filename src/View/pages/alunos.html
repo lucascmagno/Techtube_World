@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-bs-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TechTube World - Alunos</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <style>
+    body { background-color: var(--bs-body-bg); }
+
+    /* Sidebar */
+    .sidebar {
+      position: fixed; top: 0; left: 0; bottom: 0;
+      width: 220px; background-color: #0d6efd; color: #fff;
+      overflow-y: auto; z-index: 1020; display: none;
+    }
+    @media (min-width: 768px) {
+      .sidebar { display: block; }
+      .main-content { margin-left: 220px; }
+    }
+    .sidebar a {
+      color: #fff !important; text-decoration: none;
+      display: flex; align-items: center; padding: 10px 15px;
+      border-radius: 6px 0 0 6px; margin: 5px 0;
+      position: relative; transition: all 0.2s;
+    }
+    .sidebar a:hover, .sidebar a.active { background-color: #0b5ed7; }
+    .sidebar a:hover::after, .sidebar a.active::after {
+      content: ""; position: absolute; right: 0; top: 0;
+      height: 100%; width: 4px; background-color: #DC3DEB;
+      border-radius: 0 4px 4px 0;
+    }
+    .sidebar .logo { font-size: 1.3rem; font-weight: bold; padding: 20px 15px; display: flex; align-items: center; gap: 10px; }
+    .offcanvas { background-color: #0d6efd !important; color: #fff; }
+
+    /* Alunos */
+    .student-card { border-radius: 12px; transition: transform 0.2s; }
+    .student-card:hover { transform: translateY(-3px); }
+    .student-img { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; }
+    .student-score { font-weight: bold; color: #0d6efd; }
+
+    /* Pódio */
+    .podium { display: flex; justify-content: center; align-items: flex-end; gap: 20px; margin-bottom: 40px; }
+    .podium-item {
+      text-align: center; padding: 15px; border-radius: 12px;
+      background: #f8f9fa; box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      width: 120px;
+    }
+    .podium-item img { width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 3px solid #0d6efd; }
+    .podium-1 { background: #fff3cd; border: 2px solid gold; }
+    .podium-2 { background: #e2e3e5; border: 2px solid silver; }
+    .podium-3 { background: #f8d7da; border: 2px solid #cd7f32; }
+  </style>
+</head>
+<body class="bg-light">
+
+<!-- Navbar Mobile -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary d-md-none">
+  <div class="container-fluid">
+    <a class="navbar-brand fw-bold" href="#"><i class="bi bi-book-fill"></i> TechTube</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Offcanvas Menu (Mobile) -->
+<div class="offcanvas offcanvas-start" tabindex="-1" id="mobileMenu">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title"><i class="bi bi-book-fill me-2"></i> TechTube World</h5>
+    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
+  </div>
+  <div class="offcanvas-body">
+    <ul class="nav flex-column">
+      <li class="nav-item"><a href="inicio.html"><i class="bi bi-house-door me-2"></i> Início</a></li>
+      <li class="nav-item"><a href="alunos.html" class="active"><i class="bi bi-people me-2"></i> Alunos</a></li>
+      <li class="nav-item"><a href="professores.html"><i class="bi bi-person-badge me-2"></i> Professores</a></li>
+      <li class="nav-item"><a href="cursos.html"><i class="bi bi-journal-bookmark me-2"></i> Cursos</a></li>
+      <li class="nav-item"><a href="perfil.html"><i class="bi bi-person-circle me-2"></i> Perfil</a></li>
+    </ul>
+  </div>
+</div>
+
+<!-- Sidebar (Desktop) -->
+<nav class="sidebar p-3">
+  <div class="logo"><i class="bi bi-book-fill"></i> TechTube World</div>
+  <ul class="nav flex-column">
+    <li class="nav-item"><a href="inicio.html"><i class="bi bi-house-door me-2"></i> Início</a></li>
+    <li class="nav-item"><a href="alunos.html" class="active"><i class="bi bi-people me-2"></i> Alunos</a></li>
+    <li class="nav-item"><a href="professores.html"><i class="bi bi-person-badge me-2"></i> Professores</a></li>
+    <li class="nav-item"><a href="cursos.html"><i class="bi bi-journal-bookmark me-2"></i> Cursos</a></li>
+    <li class="nav-item"><a href="perfil.html"><i class="bi bi-person-circle me-2"></i> Perfil</a></li>
+  </ul>
+</nav>
+
+<!-- Conteúdo -->
+<main class="main-content">
+  <!-- Navbar Topo -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm sticky-top navbar-top px-3">
+    <form class="d-flex me-auto w-50">
+      <input class="form-control me-2" type="search" placeholder="Pesquisar aluno por nome..." aria-label="Pesquisar">
+      <button class="btn btn-outline-primary" type="submit"><i class="bi bi-search"></i></button>
+    </form>
+    <div class="ms-3">
+      <select id="sortSelect" class="form-select form-select-sm">
+        <option value="desc" selected>Maior pontuação</option>
+        <option value="asc">Menor pontuação</option>
+      </select>
+    </div>
+  </nav>
+
+  <div class="container mt-4">
+    <!-- Pódio -->
+    <h4 class="mb-4"><i class="bi bi-trophy me-2"></i> Ranking de Alunos</h4>
+    <div class="podium">
+      <div class="podium-item podium-2">
+        <img src="https://picsum.photos/100?random=2" alt="Aluno">
+        <h6 class="mt-2">Maria</h6>
+        <span class="badge bg-secondary">280 pts</span>
+        <div>🥈</div>
+      </div>
+      <div class="podium-item podium-1">
+        <img src="https://picsum.photos/100?random=1" alt="Aluno">
+        <h6 class="mt-2">João</h6>
+        <span class="badge bg-warning text-dark">320 pts</span>
+        <div>🥇</div>
+      </div>
+      <div class="podium-item podium-3">
+        <img src="https://picsum.photos/100?random=3" alt="Aluno">
+        <h6 class="mt-2">Ana</h6>
+        <span class="badge bg-danger">250 pts</span>
+        <div>🥉</div>
+      </div>
+    </div>
+
+    <!-- Mural de Alunos -->
+    <div class="row g-4" id="studentsList">
+      <div class="col-12 col-sm-6 col-lg-3 student-item" data-score="190">
+        <div class="card student-card shadow-sm text-center p-3">
+          <img src="https://picsum.photos/200?random=4" class="student-img mx-auto" alt="Aluno">
+          <h6 class="mt-3">Carlos</h6>
+          <p class="student-score">190 pts</p>
+        </div>
+      </div>
+      <div class="col-12 col-sm-6 col-lg-3 student-item" data-score="220">
+        <div class="card student-card shadow-sm text-center p-3">
+          <img src="https://picsum.photos/200?random=5" class="student-img mx-auto" alt="Aluno">
+          <h6 class="mt-3">Fernanda</h6>
+          <p class="student-score">220 pts</p>
+        </div>
+      </div>
+      <div class="col-12 col-sm-6 col-lg-3 student-item" data-score="150">
+        <div class="card student-card shadow-sm text-center p-3">
+          <img src="https://picsum.photos/200?random=6" class="student-img mx-auto" alt="Aluno">
+          <h6 class="mt-3">Rafael</h6>
+          <p class="student-score">150 pts</p>
+        </div>
+      </div>
+      <div class="col-12 col-sm-6 col-lg-3 student-item" data-score="210">
+        <div class="card student-card shadow-sm text-center p-3">
+          <img src="https://picsum.photos/200?random=7" class="student-img mx-auto" alt="Aluno">
+          <h6 class="mt-3">Beatriz</h6>
+          <p class="student-score">210 pts</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="mt-5 px-3">
+    <div class="text-center">
+      <small>&copy; 2025 TechTube World - Todos os direitos reservados</small>
+    </div>
+  </footer>
+</main>
+
+<!-- Botão Top -->
+<button id="btnTop"><i class="bi bi-arrow-up"></i></button>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  const btnTop = document.getElementById("btnTop");
+  window.onscroll = () => btnTop.style.display = window.scrollY > 200 ? "block" : "none";
+  btnTop.onclick = () => window.scrollTo({top:0, behavior:"smooth"});
+
+  // Ordenação
+  const sortSelect = document.getElementById("sortSelect");
+  const studentsList = document.getElementById("studentsList");
+
+  sortSelect.addEventListener("change", () => {
+    const order = sortSelect.value;
+    let students = Array.from(studentsList.querySelectorAll(".student-item"));
+
+    students.sort((a, b) => {
+      const scoreA = parseInt(a.dataset.score);
+      const scoreB = parseInt(b.dataset.score);
+      return order === "asc" ? scoreA - scoreB : scoreB - scoreA;
+    });
+
+    students.forEach(student => studentsList.appendChild(student));
+  });
+</script>
+</body>
+</html>

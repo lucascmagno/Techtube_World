@@ -8,8 +8,6 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
   <style>
     body { background-color: var(--bs-body-bg); }
-
-    /* Sidebar */
     .sidebar {
       position: fixed; top: 0; left: 0; bottom: 0;
       width: 220px; background-color: #0d6efd; color: #fff;
@@ -21,9 +19,9 @@
     }
     .sidebar a {
       color: #fff !important; text-decoration: none;
-      display: flex; align-items: center;
-      padding: 10px 15px; border-radius: 6px 0 0 6px;
-      margin: 5px 0; position: relative; transition: all 0.2s;
+      display: flex; align-items: center; padding: 10px 15px;
+      border-radius: 6px 0 0 6px; margin: 5px 0;
+      position: relative; transition: all 0.2s;
     }
     .sidebar a:hover, .sidebar a.active { background-color: #0b5ed7; }
     .sidebar a:hover::after, .sidebar a.active::after {
@@ -31,35 +29,13 @@
       height: 100%; width: 4px; background-color: #DC3DEB;
       border-radius: 0 4px 4px 0;
     }
-    .sidebar .logo {
-      font-size: 1.3rem; font-weight: bold;
-      padding: 20px 15px; display: flex; align-items: center; gap: 10px;
-    }
-
-    /* Offcanvas mobile */
+    .sidebar .logo { font-size: 1.3rem; font-weight: bold; padding: 20px 15px; display: flex; align-items: center; gap: 10px; }
     .offcanvas { background-color: #0d6efd !important; color: #fff; }
-    .offcanvas a { color: #fff !important; padding: 10px 15px; display: block; margin: 5px 0; }
-
-    /* Foto de perfil */
-    .profile-pic {
-      width: 120px; height: 120px;
-      border-radius: 50%; object-fit: cover;
-      border: 4px solid #0d6efd;
-    }
-
-    /* Footer */
+    .profile-pic { width: 120px; height: 120px; border-radius: 50%; object-fit: cover; border: 4px solid #0d6efd; }
     footer { background-color: #0d6efd; color: #fff; padding: 40px 20px; margin-top: 40px; }
     footer a { color: #fff; text-decoration: none; }
     footer a:hover { text-decoration: underline; }
-
-    /* Botão Top */
-    #btnTop {
-      position: fixed; bottom: 20px; right: 20px;
-      border-radius: 50%; padding: 12px;
-      background-color: #DC3DEB; color: #fff; border: none;
-      display: none; z-index: 1050;
-    }
-
+    #btnTop { position: fixed; bottom: 20px; right: 20px; border-radius: 50%; padding: 12px; background-color: #DC3DEB; color: #fff; border: none; display: none; z-index: 1050; }
     .navbar-top { z-index: 1030; }
     .nav-profile-img { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; cursor: pointer; }
   </style>
@@ -85,7 +61,7 @@
   <div class="offcanvas-body">
     <ul class="nav flex-column">
       <li class="nav-item"><a href="inicio.html"><i class="bi bi-house-door me-2"></i> Início</a></li>
-      <li class="nav-item"><a href="#"><i class="bi bi-people me-2"></i> Alunos</a></li>
+      <li class="nav-item"><a href="alunos.html"><i class="bi bi-people me-2"></i> Alunos</a></li>
       <li class="nav-item"><a href="professores.html"><i class="bi bi-person-badge me-2"></i> Professores</a></li>
       <li class="nav-item"><a href="cursos.html"><i class="bi bi-journal-bookmark me-2"></i> Cursos</a></li>
       <li class="nav-item"><a href="perfil.html" class="active"><i class="bi bi-person-circle me-2"></i> Perfil</a></li>
@@ -98,7 +74,7 @@
   <div class="logo"><i class="bi bi-book-fill"></i> TechTube World</div>
   <ul class="nav flex-column">
     <li class="nav-item"><a href="inicio.html"><i class="bi bi-house-door me-2"></i> Início</a></li>
-    <li class="nav-item"><a href="#"><i class="bi bi-people me-2"></i> Alunos</a></li>
+    <li class="nav-item"><a href="alunos.html"><i class="bi bi-people me-2"></i> Alunos</a></li>
     <li class="nav-item"><a href="professores.html"><i class="bi bi-person-badge me-2"></i> Professores</a></li>
     <li class="nav-item"><a href="cursos.html"><i class="bi bi-journal-bookmark me-2"></i> Cursos</a></li>
     <li class="nav-item"><a href="perfil.html" class="active"><i class="bi bi-person-circle me-2"></i> Perfil</a></li>
@@ -109,24 +85,7 @@
 <main class="main-content">
   <!-- Navbar Topo -->
   <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm sticky-top navbar-top px-3">
-    <form class="d-flex me-auto w-50">
-      <input class="form-control me-2" type="search" placeholder="Pesquisar..." aria-label="Pesquisar">
-      <button class="btn btn-outline-primary" type="submit"><i class="bi bi-search"></i></button>
-    </form>
-    <ul class="navbar-nav ms-auto align-items-center">
-      <li class="nav-item me-3"><a href="#" class="nav-link"><i class="bi bi-bell fs-5"></i></a></li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" data-bs-toggle="dropdown">
-          <img src="https://picsum.photos/200" class="nav-profile-img" alt="Perfil">
-        </a>
-        <ul class="dropdown-menu dropdown-menu-end">
-          <li><a class="dropdown-item" href="#">Ver Perfil</a></li>
-          <li><a class="dropdown-item" href="#">Trocar Conta</a></li>
-          <li><hr class="dropdown-divider"></li>
-          <li><a class="dropdown-item text-danger" href="#">Sair</a></li>
-        </ul>
-      </li>
-    </ul>
+    <h5 class="mb-0"><i class="bi bi-person-circle me-2"></i> Perfil</h5>
   </nav>
 
   <!-- Perfil -->
@@ -147,7 +106,6 @@
           <p><strong>Telefone:</strong> (11) 99999-9999</p>
         </div>
         <div class="col-md-6">
-          <p><strong>CPF:</strong> 123.456.789-00</p>
           <p><strong>Data de Nascimento:</strong> 12/05/2000</p>
           <p><strong>Data de Cadastro:</strong> 18/08/2025</p>
         </div>
@@ -169,43 +127,142 @@
       <p>Rua Exemplo, 123 - São Paulo/SP</p>
 
       <div class="d-flex justify-content-end mt-4 gap-2">
-        <button class="btn btn-outline-secondary"><i class="bi bi-key"></i> Alterar Senha</button>
-        <button class="btn btn-primary"><i class="bi bi-pencil"></i> Editar Perfil</button>
+        <button class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#modalSenha"><i class="bi bi-key"></i> Alterar Senha</button>
+        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalPerfil"><i class="bi bi-pencil"></i> Editar Perfil</button>
       </div>
     </div>
   </div>
 
-  <!-- Footer -->
-  <footer class="mt-5 px-3">
-    <div class="row">
-      <div class="col-md-4 mb-3">
-        <h5><i class="bi bi-book-fill me-2"></i>TechTube World</h5>
-        <p>Transformando aprendizado em um ambiente divertido e proveitoso.</p>
+  <!-- Dashboard -->
+  <div class="container mt-5">
+    <h4 class="mb-3"><i class="bi bi-speedometer2 me-2"></i> Meu Dashboard</h4>
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="card shadow-sm p-3 text-center">
+          <h6>Cursos Cadastrados</h6>
+          <p class="display-6">5</p>
+        </div>
       </div>
-      <div class="col-md-4 mb-3">
-        <h6>Navegação</h6>
-        <ul class="list-unstyled">
-          <li><a href="inicio.html">Início</a></li>
-          <li><a href="cursos.html">Cursos</a></li>
-          <li><a href="#">Turmas</a></li>
-          <li><a href="#">Sobre nós</a></li>
-        </ul>
+      <div class="col-md-4">
+        <div class="card shadow-sm p-3 text-center">
+          <h6>Pontos</h6>
+          <p class="display-6">320</p>
+        </div>
       </div>
-      <div class="col-md-4 mb-3">
-        <h6>Cursos Populares</h6>
-        <ul class="list-unstyled">
-          <li><a href="#">Programação</a></li>
-          <li><a href="#">Banco de Dados</a></li>
-          <li><a href="#">Front-end</a></li>
-          <li><a href="#">Back-end</a></li>
-        </ul>
+      <div class="col-md-4">
+        <div class="card shadow-sm p-3 text-center">
+          <h6>Atividades Pendentes</h6>
+          <p class="display-6">3</p>
+        </div>
       </div>
     </div>
-    <div class="text-center mt-3">
+
+    <h5 class="mt-5">Progresso nos Cursos</h5>
+    <div class="card shadow-sm p-3 mb-3">
+      <p><strong>Programação Web</strong></p>
+      <div class="progress">
+        <div class="progress-bar bg-success" style="width: 70%;">70%</div>
+      </div>
+    </div>
+    <div class="card shadow-sm p-3 mb-3">
+      <p><strong>Banco de Dados</strong></p>
+      <div class="progress">
+        <div class="progress-bar bg-info" style="width: 45%;">45%</div>
+      </div>
+    </div>
+
+    <h5 class="mt-5">Histórico de Cursos</h5>
+    <ul class="list-group shadow-sm">
+      <li class="list-group-item">Curso de Lógica de Programação - Concluído em 2024</li>
+      <li class="list-group-item">Introdução ao HTML e CSS - Concluído em 2023</li>
+      <li class="list-group-item">Matemática Computacional - Concluído em 2022</li>
+    </ul>
+  </div>
+
+  <!-- Footer -->
+  <footer class="mt-5 px-3">
+    <div class="text-center">
       <small>&copy; 2025 TechTube World - Todos os direitos reservados</small>
     </div>
   </footer>
 </main>
+
+<!-- Modal Alterar Senha -->
+<div class="modal fade" id="modalSenha" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form>
+        <div class="modal-header">
+          <h5 class="modal-title"><i class="bi bi-key me-2"></i> Alterar Senha</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label>Senha Atual</label>
+            <input type="password" class="form-control" required>
+          </div>
+          <div class="mb-3">
+            <label>Nova Senha</label>
+            <input type="password" id="novaSenha" class="form-control" required>
+          </div>
+          <div class="mb-3">
+            <label>Confirmar Nova Senha</label>
+            <input type="password" id="confirmarSenha" class="form-control" required>
+            <div id="erroSenha" class="text-danger small mt-1" style="display:none;">As senhas não conferem!</div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="submit" class="btn btn-primary">Salvar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Editar Perfil -->
+<div class="modal fade" id="modalPerfil" tabindex="-1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <form>
+        <div class="modal-header">
+          <h5 class="modal-title"><i class="bi bi-pencil me-2"></i> Editar Perfil</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body row g-3">
+          <div class="col-md-6">
+            <label>Nome Completo</label>
+            <input type="text" class="form-control" value="João da Silva" required>
+          </div>
+          <div class="col-md-6">
+            <label>Email</label>
+            <input type="email" class="form-control" value="joao@email.com" required>
+          </div>
+          <div class="col-md-6">
+            <label>Telefone</label>
+            <input type="text" class="form-control" value="(11) 99999-9999">
+          </div>
+          <div class="col-md-6">
+            <label>Data de Nascimento</label>
+            <input type="date" class="form-control" value="2000-05-12">
+          </div>
+          <div class="col-md-6">
+            <label>Endereço</label>
+            <input type="text" class="form-control" value="Rua Exemplo, 123 - São Paulo/SP">
+          </div>
+          <div class="col-md-6">
+            <label>Curso Atual</label>
+            <input type="text" class="form-control" value="Programação Web">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="submit" class="btn btn-primary">Salvar Alterações</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
 
 <!-- Botão Top -->
 <button id="btnTop"><i class="bi bi-arrow-up"></i></button>
@@ -215,6 +272,21 @@
   const btnTop = document.getElementById("btnTop");
   window.onscroll = () => btnTop.style.display = window.scrollY > 200 ? "block" : "none";
   btnTop.onclick = () => window.scrollTo({top:0, behavior:"smooth"});
+
+  // Validação de senha
+  const formSenha = document.querySelector("#modalSenha form");
+  formSenha.addEventListener("submit", e => {
+    e.preventDefault();
+    const nova = document.getElementById("novaSenha").value;
+    const conf = document.getElementById("confirmarSenha").value;
+    if (nova !== conf) {
+      document.getElementById("erroSenha").style.display = "block";
+    } else {
+      document.getElementById("erroSenha").style.display = "none";
+      alert("Senha alterada com sucesso!");
+      bootstrap.Modal.getInstance(document.getElementById("modalSenha")).hide();
+    }
+  });
 </script>
 </body>
 </html>

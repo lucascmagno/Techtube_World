@@ -9,62 +9,37 @@
   <style>
     body { background-color: var(--bs-body-bg); }
 
-    /* Sidebar - só aparece no desktop */
+    /* Sidebar (desktop) */
     .sidebar {
-      position: fixed;
-      top: 0; left: 0; bottom: 0;
-      width: 220px;
-      background-color: #0d6efd;
-      color: #fff;
-      overflow-y: auto;
-      z-index: 1020;
-      display: none; /* escondida no mobile */
+      position: fixed; top: 0; left: 0; bottom: 0;
+      width: 220px; background-color: #0d6efd; color: #fff;
+      overflow-y: auto; z-index: 1020; display: none;
     }
     @media (min-width: 768px) {
       .sidebar { display: block; }
       .main-content { margin-left: 220px; }
     }
-
     .sidebar a {
-      color: #fff !important;
-      text-decoration: none;
-      display: flex; align-items: center;
-      padding: 10px 15px;
-      border-radius: 6px 0 0 6px;
-      margin: 5px 0;
-      position: relative;
+      color: #fff !important; text-decoration: none;
+      display: flex; align-items: center; padding: 10px 15px;
+      border-radius: 6px 0 0 6px; margin: 5px 0; position: relative;
       transition: all 0.2s;
     }
-    .sidebar a:hover,
-    .sidebar a.active { background-color: #0b5ed7; }
-    .sidebar a:hover::after,
-    .sidebar a.active::after {
-      content: "";
-      position: absolute;
-      right: 0; top: 0; height: 100%; width: 4px;
-      background-color: #DC3DEB;
-      border-radius: 0 4px 4px 0;
+    .sidebar a:hover, .sidebar a.active { background-color: #0b5ed7; }
+    .sidebar a:hover::after, .sidebar a.active::after {
+      content: ""; position: absolute; right: 0; top: 0; height: 100%; width: 4px;
+      background-color: #DC3DEB; border-radius: 0 4px 4px 0;
     }
-    .sidebar .logo {
-      font-size: 1.3rem; font-weight: bold;
-      padding: 20px 15px;
-      display: flex; align-items: center; gap: 10px;
-    }
+    .sidebar .logo { font-size: 1.3rem; font-weight: bold; padding: 20px 15px; display: flex; align-items: center; gap: 10px; }
 
-    /* Offcanvas (menu mobile) */
+    /* Offcanvas (mobile menu) */
     .offcanvas { background-color: #0d6efd !important; color: #fff; }
     .offcanvas a {
       color: #fff !important; text-decoration: none;
       display: block; padding: 10px 15px;
-      border-radius: 6px 0 0 6px; margin: 5px 0; position: relative;
+      border-radius: 6px; margin: 5px 0; transition: background 0.2s;
     }
-    .offcanvas a:hover,
-    .offcanvas a.active { background-color: #0b5ed7; }
-    .offcanvas a:hover::after,
-    .offcanvas a.active::after {
-      content: ""; position: absolute; right: 0; top: 0; height: 100%; width: 4px;
-      background-color: #DC3DEB; border-radius: 0 4px 4px 0;
-    }
+    .offcanvas a:hover, .offcanvas a.active { background-color: #0b5ed7; }
 
     /* Cards */
     .course-card { border-radius: 12px; overflow: hidden; transition: transform 0.2s; }
@@ -83,11 +58,12 @@
       display: none; z-index: 1050;
     }
 
-    /* Navbar topo */
     .navbar-top { z-index: 1030; }
-    .profile-img {
-      width: 40px; height: 40px; border-radius: 50%;
-      object-fit: cover; cursor: pointer;
+    .profile-img { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; cursor: pointer; }
+
+    .course-img-detail {
+      width: 100%; max-height: 250px; object-fit: cover;
+      border-radius: 8px; margin-bottom: 15px;
     }
   </style>
 </head>
@@ -125,7 +101,7 @@
   <div class="logo"><i class="bi bi-book-fill"></i> TechTube World</div>
   <ul class="nav flex-column">
     <li class="nav-item"><a href="inicio.html" class="active"><i class="bi bi-house-door me-2"></i> Início</a></li>
-    <li class="nav-item"><a href="#"><i class="bi bi-people me-2"></i> Alunos</a></li>
+    <li class="nav-item"><a href="alunos.html"><i class="bi bi-people me-2"></i> Alunos</a></li>
     <li class="nav-item"><a href="professores.html"><i class="bi bi-person-badge me-2"></i> Professores</a></li>
     <li class="nav-item"><a href="cursos.html"><i class="bi bi-journal-bookmark me-2"></i> Cursos</a></li>
     <li class="nav-item"><a href="perfil.html"><i class="bi bi-person-circle me-2"></i> Perfil</a></li>
@@ -167,13 +143,15 @@
       <div class="card course-card shadow-sm">
         <img src="https://picsum.photos/400/200" class="card-img-top" alt="Curso">
         <div class="card-body">
-          <small class="text-muted">Categoria | 18 de agosto de 2025</small>
-          <h5 class="card-title mt-2">Nome do Curso</h5>
-          <p class="card-text text-muted">Descrição do curso resumida...</p>
+          <small class="text-muted">Programação | Criado em 10/01/2025</small>
+          <h5 class="card-title mt-2">Introdução ao PHP</h5>
+          <p class="card-text text-muted">Aprenda os fundamentos do PHP e desenvolvimento web back-end.</p>
           <p class="mb-1"><strong>Carga horária:</strong> 40h</p>
           <div class="d-flex justify-content-between align-items-center">
-            <a href="#" class="btn btn-sm btn-primary">Mais Detalhes</a>
-            <span class="text-warning"><i class="bi bi-star-fill"></i> 5.0</span>
+            <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#detalhesCursoModal">
+              Ver Detalhes
+            </button>
+            <span class="text-warning"><i class="bi bi-star-fill"></i> 4.8</span>
           </div>
         </div>
       </div>
@@ -182,30 +160,6 @@
 
   <!-- Footer -->
   <footer class="mt-5 px-3">
-    <div class="row">
-      <div class="col-md-4 mb-3">
-        <h5><i class="bi bi-book-fill me-2"></i>TechTube World</h5>
-        <p>Transformando aprendizado em um ambiente divertido e proveitoso.</p>
-      </div>
-      <div class="col-md-4 mb-3">
-        <h6>Navegação</h6>
-        <ul class="list-unstyled">
-          <li><a href="inicio.html">Início</a></li>
-          <li><a href="cursos.html">Cursos</a></li>
-          <li><a href="#">Turmas</a></li>
-          <li><a href="#">Sobre nós</a></li>
-        </ul>
-      </div>
-      <div class="col-md-4 mb-3">
-        <h6>Cursos Populares</h6>
-        <ul class="list-unstyled">
-          <li><a href="#">Programação</a></li>
-          <li><a href="#">Banco de Dados</a></li>
-          <li><a href="#">Front-end</a></li>
-          <li><a href="#">Back-end</a></li>
-        </ul>
-      </div>
-    </div>
     <div class="text-center mt-3">
       <small>&copy; 2025 TechTube World - Todos os direitos reservados</small>
     </div>
@@ -214,6 +168,49 @@
 
 <!-- Botão Top -->
 <button id="btnTop"><i class="bi bi-arrow-up"></i></button>
+
+<!-- MODAL: Detalhes do Curso -->
+<div class="modal fade" id="detalhesCursoModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header bg-primary text-white">
+        <h5 class="modal-title"><i class="bi bi-journal-bookmark me-2"></i> Detalhes do Curso</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <img src="https://picsum.photos/800/300" class="course-img-detail" alt="Imagem do curso">
+
+        <h4>Introdução ao PHP</h4>
+        <p><strong>Categoria:</strong> Programação</p>
+        <p><strong>Descrição:</strong> Curso completo para aprender os fundamentos de PHP e criar aplicações web dinâmicas.</p>
+        <p><strong>Carga horária:</strong> 40h</p>
+        <p><strong>Data de Criação:</strong> 10/01/2025</p>
+        <p><strong>Última Modificação:</strong> 18/02/2025</p>
+        <hr>
+        <h5><i class="bi bi-person-badge me-2"></i> Professor</h5>
+        <p>Nome: <strong>Carlos Lima</strong><br>Email: carlos.lima@example.com</p>
+        <hr>
+        <h5><i class="bi bi-diagram-3 me-2"></i> Turma</h5>
+        <p>Turma A - 2025<br>Início: 01/02/2025<br>Fim: 30/06/2025</p>
+        <hr>
+        <h5><i class="bi bi-people me-2"></i> Alunos Inscritos</h5>
+        <p>Total: <strong>120</strong></p>
+        <ul>
+          <li>Maria Souza</li>
+          <li>João Santos</li>
+          <li>Pedro Henrique</li>
+        </ul>
+        <hr>
+        <h5><i class="bi bi-star-fill text-warning me-2"></i> Avaliações</h5>
+        <p>Média: <strong>4.8</strong> ⭐</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+        <button class="btn btn-success">Inscrever-se</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
