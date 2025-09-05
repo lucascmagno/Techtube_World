@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-bs-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TechTube World - Resumos</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <style>
+    body { background-color: var(--bs-body-bg); }
+    .sidebar {
+      position: fixed; top: 0; left: 0; bottom: 0;
+      width: 220px; background-color: #0d6efd; color: #fff;
+      overflow-y: auto; z-index: 1020; display: none;
+    }
+    @media (min-width: 768px) { .sidebar { display: block; } .main-content { margin-left: 220px; } }
+    .sidebar a {
+      color: #fff !important; text-decoration: none;
+      display: flex; align-items: center; padding: 10px 15px;
+      border-radius: 6px 0 0 6px; margin: 5px 0; transition: all 0.2s;
+    }
+    .sidebar a:hover, .sidebar a.active { background-color: #0b5ed7; }
+    .sidebar .logo { font-size: 1.3rem; font-weight: bold; padding: 20px 15px; display: flex; gap: 10px; }
+    .offcanvas { background-color: #0d6efd !important; color: #fff; }
+    .resume-card { border-radius: 12px; transition: transform 0.2s; }
+    .resume-card:hover { transform: translateY(-3px); }
+    .resume-card img { height: 150px; object-fit: cover; }
+    #btnTop {
+      position: fixed; bottom: 20px; right: 20px;
+      border-radius: 50%; padding: 12px;
+      background-color: #DC3DEB; color: #fff; border: none;
+      display: none; z-index: 1050;
+    }
+  </style>
+</head>
+<body class="bg-light">
+
+<!-- Navbar Mobile -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary d-md-none">
+  <div class="container-fluid">
+    <a class="navbar-brand fw-bold" href="#"><i class="bi bi-book-fill"></i> TechTube</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Offcanvas Menu -->
+<div class="offcanvas offcanvas-start" tabindex="-1" id="mobileMenu">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title"><i class="bi bi-book-fill me-2"></i> TechTube World</h5>
+    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
+  </div>
+  <div class="offcanvas-body">
+    <ul class="nav flex-column">
+      <li><a href="inicio.html"><i class="bi bi-house-door me-2"></i> Início</a></li>
+      <li><a href="alunos.html"><i class="bi bi-people me-2"></i> Alunos</a></li>
+      <li><a href="professores.html"><i class="bi bi-person-badge me-2"></i> Professores</a></li>
+      <li><a href="cursos.html"><i class="bi bi-journal-bookmark me-2"></i> Cursos</a></li>
+      <li><a href="organizacao.html"><i class="bi bi-layers me-2"></i> Organização</a></li>
+      <li><a href="resumos.html" class="active"><i class="bi bi-file-earmark-text me-2"></i> Resumos</a></li>
+      <li><a href="perfil.html"><i class="bi bi-person-circle me-2"></i> Perfil</a></li>
+    </ul>
+  </div>
+</div>
+
+<!-- Sidebar -->
+<nav class="sidebar p-3">
+  <div class="logo"><i class="bi bi-book-fill"></i> TechTube World</div>
+  <ul class="nav flex-column">
+    <li><a href="inicio.html"><i class="bi bi-house-door me-2"></i> Início</a></li>
+    <li><a href="alunos.html"><i class="bi bi-people me-2"></i> Alunos</a></li>
+    <li><a href="professores.html"><i class="bi bi-person-badge me-2"></i> Professores</a></li>
+    <li><a href="cursos.html"><i class="bi bi-journal-bookmark me-2"></i> Cursos</a></li>
+    <li><a href="organizacao.html"><i class="bi bi-layers me-2"></i> Organização</a></li>
+    <li><a href="resumos.html" class="active"><i class="bi bi-file-earmark-text me-2"></i> Resumos</a></li>
+    <li><a href="perfil.html"><i class="bi bi-person-circle me-2"></i> Perfil</a></li>
+  </ul>
+</nav>
+
+<!-- Conteúdo -->
+<main class="main-content">
+  <div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h3><i class="bi bi-file-earmark-text me-2"></i> Resumos</h3>
+      <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addResumeModal"><i class="bi bi-plus-circle me-1"></i> Criar Resumo</button>
+    </div>
+
+    <!-- Cards -->
+    <div class="row g-4">
+      <div class="col-12 col-md-6 col-lg-4">
+        <div class="card resume-card shadow-sm">
+          <img src="https://picsum.photos/400/200" class="card-img-top" alt="Resumo">
+          <div class="card-body">
+            <h5 class="card-title">Resumo de Banco de Dados</h5>
+            <p class="card-text text-muted">Definições básicas de SQL, chaves primárias e relacionamentos...</p>
+            <div class="d-flex justify-content-between">
+              <button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#viewResumeModal">Ver</button>
+              <div>
+                <button class="btn btn-sm btn-outline-warning" data-bs-toggle="modal" data-bs-target="#editResumeModal"><i class="bi bi-pencil"></i></button>
+                <button class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteResumeModal"><i class="bi bi-trash"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- outros resumos... -->
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="mt-5 px-3">
+    <div class="text-center">
+      <small>&copy; 2025 TechTube World - Todos os direitos reservados</small>
+    </div>
+  </footer>
+</main>
+
+<!-- Botão Top -->
+<button id="btnTop"><i class="bi bi-arrow-up"></i></button>
+
+<!-- Modais -->
+<!-- Criar -->
+<div class="modal fade" id="addResumeModal" tabindex="-1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header"><h5 class="modal-title">Criar Resumo</h5><button class="btn-close" data-bs-dismiss="modal"></button></div>
+      <div class="modal-body">
+        <form>
+          <input type="text" class="form-control mb-2" placeholder="Título do resumo">
+          <textarea class="form-control mb-2" rows="5" placeholder="Conteúdo"></textarea>
+          <input type="file" class="form-control mb-2" accept="image/*">
+        </form>
+      </div>
+      <div class="modal-footer"><button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button><button class="btn btn-primary">Salvar</button></div>
+    </div>
+  </div>
+</div>
+
+<!-- Ver -->
+<div class="modal fade" id="viewResumeModal" tabindex="-1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header"><h5 class="modal-title">Resumo de Banco de Dados</h5><button class="btn-close" data-bs-dismiss="modal"></button></div>
+      <div class="modal-body">
+        <img src="https://picsum.photos/800/300" class="img-fluid rounded mb-3" alt="Resumo">
+        <p>SQL (Structured Query Language) é usada para gerenciar bancos de dados relacionais. Comandos básicos incluem SELECT, INSERT, UPDATE e DELETE...</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Editar -->
+<div class="modal fade" id="editResumeModal" tabindex="-1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header"><h5 class="modal-title">Editar Resumo</h5><button class="btn-close" data-bs-dismiss="modal"></button></div>
+      <div class="modal-body">
+        <form>
+          <input type="text" class="form-control mb-2" value="Resumo de Banco de Dados">
+          <textarea class="form-control mb-2" rows="5">Definições básicas de SQL...</textarea>
+          <input type="file" class="form-control mb-2" accept="image/*">
+        </form>
+      </div>
+      <div class="modal-footer"><button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button><button class="btn btn-primary">Salvar Alterações</button></div>
+    </div>
+  </div>
+</div>
+
+<!-- Excluir -->
+<div class="modal fade" id="deleteResumeModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header"><h5 class="modal-title text-danger">Excluir Resumo</h5><button class="btn-close" data-bs-dismiss="modal"></button></div>
+      <div class="modal-body">Tem certeza que deseja excluir este resumo?</div>
+      <div class="modal-footer"><button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button><button class="btn btn-danger">Excluir</button></div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  const btnTop = document.getElementById("btnTop");
+  window.onscroll = () => btnTop.style.display = window.scrollY > 200 ? "block" : "none";
+  btnTop.onclick = () => window.scrollTo({top:0, behavior:"smooth"});
+</script>
+</body>
+</html>

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-bs-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TechTube World - Flashcards</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <style>
+    body { background-color: var(--bs-body-bg); }
+
+    /* Sidebar */
+    .sidebar {
+      position: fixed; top: 0; left: 0; bottom: 0;
+      width: 220px; background-color: #0d6efd; color: #fff;
+      overflow-y: auto; z-index: 1020; display: none;
+    }
+    @media (min-width: 768px) { .sidebar { display: block; } .main-content { margin-left: 220px; } }
+    .sidebar a {
+      color: #fff !important; text-decoration: none;
+      display: flex; align-items: center; padding: 10px 15px;
+      border-radius: 6px 0 0 6px; margin: 5px 0; transition: all 0.2s;
+    }
+    .sidebar a:hover, .sidebar a.active { background-color: #0b5ed7; }
+    .sidebar .logo { font-size: 1.3rem; font-weight: bold; padding: 20px 15px; display: flex; gap: 10px; }
+    .offcanvas { background-color: #0d6efd !important; color: #fff; }
+
+    /* Flashcards */
+    .flashcard {
+      perspective: 1000px;
+      cursor: pointer;
+    }
+    .flashcard-inner {
+      position: relative;
+      width: 100%; height: 200px;
+      text-align: center;
+      transition: transform 0.6s;
+      transform-style: preserve-3d;
+    }
+    .flashcard.flipped .flashcard-inner {
+      transform: rotateY(180deg);
+    }
+    .flashcard-front, .flashcard-back {
+      position: absolute; width: 100%; height: 100%;
+      backface-visibility: hidden;
+      border-radius: 12px; padding: 20px;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    .flashcard-front { background: #f8f9fa; }
+    .flashcard-back { background: #dbeafe; transform: rotateY(180deg); }
+
+    #btnTop {
+      position: fixed; bottom: 20px; right: 20px;
+      border-radius: 50%; padding: 12px;
+      background-color: #DC3DEB; color: #fff; border: none;
+      display: none; z-index: 1050;
+    }
+  </style>
+</head>
+<body class="bg-light">
+
+<!-- Navbar Mobile -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary d-md-none">
+  <div class="container-fluid">
+    <a class="navbar-brand fw-bold" href="#"><i class="bi bi-book-fill"></i> TechTube</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Offcanvas Menu -->
+<div class="offcanvas offcanvas-start" tabindex="-1" id="mobileMenu">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title"><i class="bi bi-book-fill me-2"></i> TechTube World</h5>
+    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
+  </div>
+  <div class="offcanvas-body">
+    <ul class="nav flex-column">
+      <li><a href="inicio.html"><i class="bi bi-house-door me-2"></i> Início</a></li>
+      <li><a href="alunos.html"><i class="bi bi-people me-2"></i> Alunos</a></li>
+      <li><a href="professores.html"><i class="bi bi-person-badge me-2"></i> Professores</a></li>
+      <li><a href="cursos.html"><i class="bi bi-journal-bookmark me-2"></i> Cursos</a></li>
+      <li><a href="organizacao.html"><i class="bi bi-layers me-2"></i> Organização</a></li>
+      <li><a href="flashcards.html" class="active"><i class="bi bi-stickies me-2"></i> Flashcards</a></li>
+      <li><a href="perfil.html"><i class="bi bi-person-circle me-2"></i> Perfil</a></li>
+    </ul>
+  </div>
+</div>
+
+<!-- Sidebar -->
+<nav class="sidebar p-3">
+  <div class="logo"><i class="bi bi-book-fill"></i> TechTube World</div>
+  <ul class="nav flex-column">
+    <li><a href="inicio.html"><i class="bi bi-house-door me-2"></i> Início</a></li>
+    <li><a href="alunos.html"><i class="bi bi-people me-2"></i> Alunos</a></li>
+    <li><a href="professores.html"><i class="bi bi-person-badge me-2"></i> Professores</a></li>
+    <li><a href="cursos.html"><i class="bi bi-journal-bookmark me-2"></i> Cursos</a></li>
+    <li><a href="organizacao.html"><i class="bi bi-layers me-2"></i> Organização</a></li>
+    <li><a href="flashcards.html" class="active"><i class="bi bi-stickies me-2"></i> Flashcards</a></li>
+    <li><a href="perfil.html"><i class="bi bi-person-circle me-2"></i> Perfil</a></li>
+  </ul>
+</nav>
+
+<!-- Conteúdo -->
+<main class="main-content">
+  <div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h3><i class="bi bi-stickies me-2"></i> Flashcards</h3>
+      <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addFlashcardModal">
+        <i class="bi bi-plus-circle me-1"></i> Criar Flashcard
+      </button>
+    </div>
+
+    <!-- Grid de Flashcards -->
+    <div class="row g-4">
+      <div class="col-12 col-sm-6 col-lg-4">
+        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+          <div class="flashcard-inner">
+            <div class="flashcard-front">
+              <h5>O que é SQL?</h5>
+            </div>
+            <div class="flashcard-back">
+              <p>Linguagem de consulta estruturada usada para gerenciar bancos de dados relacionais.</p>
+            </div>
+          </div>
+        </div>
+        <div class="d-flex justify-content-end mt-2 gap-2">
+          <button class="btn btn-sm btn-outline-warning" data-bs-toggle="modal" data-bs-target="#editFlashcardModal"><i class="bi bi-pencil"></i></button>
+          <button class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteFlashcardModal"><i class="bi bi-trash"></i></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="mt-5 px-3">
+    <div class="text-center">
+      <small>&copy; 2025 TechTube World - Todos os direitos reservados</small>
+    </div>
+  </footer>
+</main>
+
+<!-- Botão Top -->
+<button id="btnTop"><i class="bi bi-arrow-up"></i></button>
+
+<!-- Modais -->
+<!-- Criar -->
+<div class="modal fade" id="addFlashcardModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header"><h5 class="modal-title">Criar Flashcard</h5><button class="btn-close" data-bs-dismiss="modal"></button></div>
+      <div class="modal-body">
+        <form>
+          <input type="text" class="form-control mb-2" placeholder="Pergunta (frente)">
+          <textarea class="form-control mb-2" rows="3" placeholder="Resposta (verso)"></textarea>
+        </form>
+      </div>
+      <div class="modal-footer"><button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button><button class="btn btn-primary">Salvar</button></div>
+    </div>
+  </div>
+</div>
+
+<!-- Editar -->
+<div class="modal fade" id="editFlashcardModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header"><h5 class="modal-title">Editar Flashcard</h5><button class="btn-close" data-bs-dismiss="modal"></button></div>
+      <div class="modal-body">
+        <form>
+          <input type="text" class="form-control mb-2" value="O que é SQL?">
+          <textarea class="form-control mb-2" rows="3">Linguagem de consulta estruturada...</textarea>
+        </form>
+      </div>
+      <div class="modal-footer"><button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button><button class="btn btn-primary">Salvar Alterações</button></div>
+    </div>
+  </div>
+</div>
+
+<!-- Excluir -->
+<div class="modal fade" id="deleteFlashcardModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header"><h5 class="modal-title text-danger">Excluir Flashcard</h5><button class="btn-close" data-bs-dismiss="modal"></button></div>
+      <div class="modal-body">Tem certeza que deseja excluir este flashcard?</div>
+      <div class="modal-footer"><button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button><button class="btn btn-danger">Excluir</button></div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  const btnTop = document.getElementById("btnTop");
+  window.onscroll = () => btnTop.style.display = window.scrollY > 200 ? "block" : "none";
+  btnTop.onclick = () => window.scrollTo({top:0, behavior:"smooth"});
+</script>
+</body>
+</html>

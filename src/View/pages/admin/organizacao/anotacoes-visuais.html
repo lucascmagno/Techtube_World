@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-bs-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TechTube World - Anotações Visuais</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <style>
+    body { background-color: var(--bs-body-bg); }
+
+    /* Sidebar */
+    .sidebar {
+      position: fixed; top: 0; left: 0; bottom: 0;
+      width: 220px; background-color: #0d6efd; color: #fff;
+      overflow-y: auto; z-index: 1020; display: none;
+    }
+    @media (min-width: 768px) { .sidebar { display: block; } .main-content { margin-left: 220px; } }
+    .sidebar a {
+      color: #fff !important; text-decoration: none;
+      display: flex; align-items: center; padding: 10px 15px;
+      border-radius: 6px 0 0 6px; margin: 5px 0; transition: all 0.2s;
+    }
+    .sidebar a:hover, .sidebar a.active { background-color: #0b5ed7; }
+    .sidebar .logo { font-size: 1.3rem; font-weight: bold; padding: 20px 15px; display: flex; gap: 10px; }
+    .offcanvas { background-color: #0d6efd !important; color: #fff; }
+
+    /* Cards */
+    .note-card {
+      border-radius: 12px;
+      overflow: hidden;
+      transition: transform 0.2s;
+    }
+    .note-card:hover { transform: translateY(-3px); }
+    .note-card img { width: 100%; height: 150px; object-fit: cover; }
+    .note-card-body { padding: 15px; }
+    .note-card-title { font-weight: bold; }
+    .note-card-text { font-size: 0.9rem; color: #555; }
+
+    #btnTop {
+      position: fixed; bottom: 20px; right: 20px;
+      border-radius: 50%; padding: 12px;
+      background-color: #DC3DEB; color: #fff; border: none;
+      display: none; z-index: 1050;
+    }
+  </style>
+</head>
+<body class="bg-light">
+
+<!-- Navbar Mobile -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary d-md-none">
+  <div class="container-fluid">
+    <a class="navbar-brand fw-bold" href="#"><i class="bi bi-book-fill"></i> TechTube</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Offcanvas Menu -->
+<div class="offcanvas offcanvas-start" tabindex="-1" id="mobileMenu">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title"><i class="bi bi-book-fill me-2"></i> TechTube World</h5>
+    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
+  </div>
+  <div class="offcanvas-body">
+    <ul class="nav flex-column">
+      <li><a href="inicio.html"><i class="bi bi-house-door me-2"></i> Início</a></li>
+      <li><a href="alunos.html"><i class="bi bi-people me-2"></i> Alunos</a></li>
+      <li><a href="professores.html"><i class="bi bi-person-badge me-2"></i> Professores</a></li>
+      <li><a href="cursos.html"><i class="bi bi-journal-bookmark me-2"></i> Cursos</a></li>
+      <li><a href="organizacao.html"><i class="bi bi-layers me-2"></i> Organização</a></li>
+      <li><a href="anotacoes-visuais.html" class="active"><i class="bi bi-brush me-2"></i> Anotações Visuais</a></li>
+      <li><a href="perfil.html"><i class="bi bi-person-circle me-2"></i> Perfil</a></li>
+    </ul>
+  </div>
+</div>
+
+<!-- Sidebar -->
+<nav class="sidebar p-3">
+  <div class="logo"><i class="bi bi-book-fill"></i> TechTube World</div>
+  <ul class="nav flex-column">
+    <li><a href="inicio.html"><i class="bi bi-house-door me-2"></i> Início</a></li>
+    <li><a href="alunos.html"><i class="bi bi-people me-2"></i> Alunos</a></li>
+    <li><a href="professores.html"><i class="bi bi-person-badge me-2"></i> Professores</a></li>
+    <li><a href="cursos.html"><i class="bi bi-journal-bookmark me-2"></i> Cursos</a></li>
+    <li><a href="organizacao.html"><i class="bi bi-layers me-2"></i> Organização</a></li>
+    <li><a href="anotacoes-visuais.html" class="active"><i class="bi bi-brush me-2"></i> Anotações Visuais</a></li>
+    <li><a href="perfil.html"><i class="bi bi-person-circle me-2"></i> Perfil</a></li>
+  </ul>
+</nav>
+
+<!-- Conteúdo -->
+<main class="main-content">
+  <div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h3><i class="bi bi-brush me-2"></i> Anotações Visuais</h3>
+      <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addNoteModal">
+        <i class="bi bi-plus-circle me-1"></i> Criar Anotação
+      </button>
+    </div>
+
+    <!-- Grid -->
+    <div class="row g-4">
+      <div class="col-12 col-md-6 col-lg-4">
+        <div class="card note-card shadow-sm">
+          <img src="https://picsum.photos/400/200?random=1" alt="Anotação">
+          <div class="note-card-body">
+            <h6 class="note-card-title">Redes de Computadores</h6>
+            <p class="note-card-text">Mapa visual sobre topologias e protocolos.</p>
+            <div class="d-flex justify-content-end gap-2 mt-2">
+              <button class="btn btn-sm btn-outline-info" data-bs-toggle="modal" data-bs-target="#viewNoteModal"><i class="bi bi-eye"></i></button>
+              <button class="btn btn-sm btn-outline-warning" data-bs-toggle="modal" data-bs-target="#editNoteModal"><i class="bi bi-pencil"></i></button>
+              <button class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteNoteModal"><i class="bi bi-trash"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="mt-5 px-3">
+    <div class="text-center">
+      <small>&copy; 2025 TechTube World - Todos os direitos reservados</small>
+    </div>
+  </footer>
+</main>
+
+<!-- Botão Top -->
+<button id="btnTop"><i class="bi bi-arrow-up"></i></button>
+
+<!-- Modais -->
+<!-- Criar -->
+<div class="modal fade" id="addNoteModal" tabindex="-1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header"><h5 class="modal-title">Criar Anotação Visual</h5><button class="btn-close" data-bs-dismiss="modal"></button></div>
+      <div class="modal-body">
+        <form>
+          <input type="text" class="form-control mb-2" placeholder="Título">
+          <textarea class="form-control mb-2" rows="3" placeholder="Descrição"></textarea>
+          <input type="file" class="form-control mb-2" accept="image/*">
+        </form>
+      </div>
+      <div class="modal-footer"><button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button><button class="btn btn-primary">Salvar</button></div>
+    </div>
+  </div>
+</div>
+
+<!-- Visualizar -->
+<div class="modal fade" id="viewNoteModal" tabindex="-1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header"><h5 class="modal-title">Visualizar Anotação</h5><button class="btn-close" data-bs-dismiss="modal"></button></div>
+      <div class="modal-body">
+        <img src="https://picsum.photos/600/300?random=1" class="img-fluid rounded mb-3">
+        <h5>Redes de Computadores</h5>
+        <p>Mapa visual sobre topologias e protocolos.</p>
+      </div>
+      <div class="modal-footer"><button class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button></div>
+    </div>
+  </div>
+</div>
+
+<!-- Editar -->
+<div class="modal fade" id="editNoteModal" tabindex="-1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header"><h5 class="modal-title">Editar Anotação</h5><button class="btn-close" data-bs-dismiss="modal"></button></div>
+      <div class="modal-body">
+        <form>
+          <input type="text" class="form-control mb-2" value="Redes de Computadores">
+          <textarea class="form-control mb-2" rows="3">Mapa visual sobre topologias e protocolos.</textarea>
+          <input type="file" class="form-control mb-2" accept="image/*">
+        </form>
+      </div>
+      <div class="modal-footer"><button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button><button class="btn btn-primary">Salvar Alterações</button></div>
+    </div>
+  </div>
+</div>
+
+<!-- Excluir -->
+<div class="modal fade" id="deleteNoteModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header"><h5 class="modal-title text-danger">Excluir Anotação</h5><button class="btn-close" data-bs-dismiss="modal"></button></div>
+      <div class="modal-body">Tem certeza que deseja excluir esta anotação?</div>
+      <div class="modal-footer"><button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button><button class="btn btn-danger">Excluir</button></div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  const btnTop = document.getElementById("btnTop");
+  window.onscroll = () => btnTop.style.display = window.scrollY > 200 ? "block" : "none";
+  btnTop.onclick = () => window.scrollTo({top:0, behavior:"smooth"});
+</script>
+</body>
+</html>
