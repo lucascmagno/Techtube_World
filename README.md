@@ -54,8 +54,6 @@ atividades**.
 
 ## 🗂 Estrutura do Banco de Dados
 
-Baseado no script SQL fornecido (`criacao_do_banco_de_dados.sql`).
-
 ### Principais Tabelas:
 
 -   **usuarios** → nome, matrícula, email, telefone, sexo, senha,
@@ -78,8 +76,8 @@ Baseado no script SQL fornecido (`criacao_do_banco_de_dados.sql`).
     -   HTML5, CSS3 (Bootstrap 5, mobile first).\
     -   JavaScript (ES6+).\
     -   TinyMCE (Editor WYSIWYG sem API).
--   **Backend** (em desenvolvimento):
-    -   PHP ou Node.js (dependendo da escolha final).\
+-   **Backend**:
+    -   PHP.
     -   Integração com MySQL.
 -   **Banco de Dados**:
     -   MySQL.
