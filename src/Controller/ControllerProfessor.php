@@ -1,5 +1,5 @@
 <?php
-    require_once __DIR__ . "/../Models/Curso.php";
+    require_once __DIR__ . "/../Models/Professor.php";
 
     class AlunoController {
         private $model;
