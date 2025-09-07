@@ -125,7 +125,9 @@
   <div class="container mt-4">
     <div class="d-flex justify-content-between align-items-center mb-4">
       <h3><i class="bi bi-diagram-3 me-2"></i> Minhas Turmas</h3>
-      <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addTurmaModal"><i class="bi bi-plus-lg me-1"></i> Nova Turma</button>
+      <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addTurmaModal">
+        <i class="bi bi-plus-lg me-1"></i> Nova Turma
+      </button>
     </div>
 
     <!-- Card Turma -->
@@ -180,37 +182,57 @@
 <button id="btnTop"><i class="bi bi-arrow-up"></i></button>
 
 <!-- Modal Nova Turma -->
-<div class="modal fade" id="modalNovaTurma" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
+<div class="modal fade" id="addTurmaModal" tabindex="-1" aria-labelledby="addTurmaModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
     <div class="modal-content">
-      <form>
+      <form id="formAddTurma">
         <div class="modal-header bg-primary text-white">
-          <h5 class="modal-title"><i class="bi bi-plus-circle me-2"></i> Criar Nova Turma</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          <h5 class="modal-title" id="addTurmaModalLabel"><i class="bi bi-plus-circle me-2"></i> Criar Nova Turma</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
         </div>
         <div class="modal-body">
           <div class="mb-3">
             <label class="form-label">Nome da Turma</label>
-            <input type="text" class="form-control" placeholder="Digite o nome da turma">
+            <input type="text" class="form-control" id="addNomeTurma" placeholder="Digite o nome da turma" required>
           </div>
           <div class="mb-3">
             <label class="form-label">Curso Associado</label>
-            <select class="form-select">
-              <option>Selecione um curso</option>
-              <option>Introdução ao PHP</option>
-              <option>JavaScript Avançado</option>
-              <option>Banco de Dados Relacional</option>
+            <select class="form-select" id="addCursoTurma" required>
+              <option value="">Selecione um curso</option>
+              <option value="1">Introdução ao PHP</option>
+              <option value="2">JavaScript Avançado</option>
+              <option value="3">Banco de Dados Relacional</option>
+              <!-- Dinâmico -->
+            </select>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Professor Responsável</label>
+            <select class="form-select" id="addProfessorTurma" required>
+              <option value="">Selecione um professor</option>
+              <option value="1">Carlos Lima</option>
+              <option value="2">Ana Beatriz</option>
+              <!-- Dinâmico -->
             </select>
           </div>
           <div class="mb-3">
             <label class="form-label">Adicionar Alunos</label>
-            <select multiple class="form-select">
-              <option>Maria Souza</option>
-              <option>João Santos</option>
-              <option>Carlos Lima</option>
-              <option>Ana Beatriz</option>
+            <select multiple class="form-select" id="addAlunosTurma">
+              <option value="2023001">Maria Souza</option>
+              <option value="2023002">João Santos</option>
+              <option value="2023003">Pedro Henrique</option>
+              <!-- Dinâmico -->
             </select>
             <small class="text-muted">Segure CTRL (ou CMD no Mac) para selecionar múltiplos alunos.</small>
+          </div>
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label class="form-label">Data de Início</label>
+              <input type="date" class="form-control" id="addDataInicio" required>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label class="form-label">Data de Fim</label>
+              <input type="date" class="form-control" id="addDataFim" required>
+            </div>
           </div>
         </div>
         <div class="modal-footer">
