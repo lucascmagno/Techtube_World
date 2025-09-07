@@ -9,6 +9,13 @@
             $this->db = Database::getConnection();
         }
 
+        function getUserByEmail($email) {
+            $stmt = $this->db->prepare("SELECT * FROM $this->table WHERE email = :email");
+            $stmt->bindValue(":email", $email);
+            $stmt->execute();
+            return $stmt->fetch(PDO::FETCH_ASSOC);
+        }
+
          function login($email, $senha){
             try {
                 $query = "SELECT * FROM $this->table WHERE email = :email AND senha = :senha";

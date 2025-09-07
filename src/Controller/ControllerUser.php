@@ -18,4 +18,12 @@
             $usuariosModel = new Usuarios();
             return $usuariosModel->adicionarCadastro($nome, $email, $matricula, $senha, $telefone, $sexo, $tipoUsuario, $cep, $rua, $numero, $bairro, $cidade, $uf);
         }
+
+        public function getUserByEmail($email) {
+            $usuariosModel = new Usuarios();
+            return $usuariosModel->getUserByEmail($email);
+        }
+
+
     }
+?>
