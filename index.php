@@ -80,16 +80,16 @@
   <div class="form-container login-container is-active" id="loginForm">
     <div class="p-4 h-100 d-flex flex-column justify-content-center">
       <h2 class="fw-bold mb-3 text-center">Login</h2>
-      <form>
+      <form id="loginUserForm" method="POST" action="./src/View/php/login.php" autocomplete="on">
         <div class="mb-3 input-group">
           <span class="input-group-text"><i class="bi bi-envelope"></i></span>
-          <input type="email" class="form-control" placeholder="Email" required>
+          <input type="email" class="form-control" name="email" id="email" placeholder="Email" required>
         </div>
         <div class="mb-3 input-group">
           <span class="input-group-text"><i class="bi bi-lock"></i></span>
-          <input type="password" class="form-control" placeholder="Senha" required>
+          <input type="password" class="form-control" name="senha" id="senha" placeholder="Senha" required>
         </div>
-        <button type="submit" class="btn btn-primary w-100">Entrar</button>
+        <input type="submit" class="btn btn-primary w-100"></input>
       </form>
       <div class="text-center mt-3">
         <a href="#" data-bs-toggle="modal" data-bs-target="#forgotPasswordModal">Esqueci minha senha</a>
