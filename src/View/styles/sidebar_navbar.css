@@ -1,0 +1,89 @@
+/* Sidebar */
+    .sidebar {
+      position: fixed; top: 0; left: 0; bottom: 0;
+      width: 220px; background-color: #0d6efd; color: #fff;
+      overflow-y: auto; z-index: 1020; display: none;
+    }
+    @media (min-width: 768px) {
+      .sidebar { display: block; }
+      .main-content { margin-left: 220px; }
+    }
+    .sidebar a {
+      color: #fff !important; text-decoration: none;
+      display: flex; align-items: center;
+      padding: 10px 15px; border-radius: 6px 0 0 6px;
+      margin: 5px 0; position: relative; transition: all 0.2s;
+    }
+    .sidebar a:hover, .sidebar a.active { background-color: #0b5ed7; }
+    .sidebar a:hover::after, .sidebar a.active::after {
+      content: ""; position: absolute; right: 0; top: 0;
+      height: 100%; width: 4px; background-color: #DC3DEB;
+      border-radius: 0 4px 4px 0;
+    }
+    .sidebar .logo {
+      font-size: 1.3rem; font-weight: bold;
+      padding: 20px 15px; display: flex; align-items: center; gap: 10px;
+    }
+
+    /* Offcanvas mobile */
+    .offcanvas { background-color: #0d6efd !important; color: #fff; }
+
+    /* Cards dashboard */
+    .stat-card {
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+      color: #fff;
+    }
+    .stat-card i { font-size: 2rem; margin-bottom: 10px; display: block; }
+    .stat-card h4 { margin: 10px 0 5px; }
+
+    /* Footer */
+    footer { background-color: #0d6efd; color: #fff; padding: 40px 20px; margin-top: 40px; }
+    footer a { color: #fff; text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    /* Botão Top */
+    #btnTop {
+      position: fixed; bottom: 20px; right: 20px;
+      border-radius: 50%; padding: 12px;
+      background-color: #DC3DEB; color: #fff; border: none;
+      display: none; z-index: 1050;
+    }
+
+    .navbar-top { z-index: 1030; }
+    .nav-profile-img { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; cursor: pointer; }
+    /* Links do sidebar e offcanvas */
+    .sidebar a,
+    .offcanvas a {
+        color: #fff !important;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        padding: 10px 15px;
+        border-radius: 6px 0 0 6px;
+        margin: 5px 0;
+        position: relative;
+        transition: all 0.2s;
+    }
+
+    .offcanvas a:hover,
+    .offcanvas a.active,
+    .sidebar a:hover,
+    .sidebar a.active {
+        background-color: #0b5ed7;
+    }
+
+    .offcanvas a:hover::after,
+    .offcanvas a.active::after,
+    .sidebar a:hover::after,
+    .sidebar a.active::after {
+        content: "";
+        position: absolute;
+        right: 0;
+        top: 0;
+        height: 100%;
+        width: 4px;
+        background-color: #DC3DEB;
+        border-radius: 0 4px 4px 0;
+    }
