@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-bs-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TechTube World - Técnica Pomodoro</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <style>
+    body { background-color: var(--bs-body-bg); }
+
+    /* Sidebar */
+    .sidebar {
+      position: fixed; top: 0; left: 0; bottom: 0;
+      width: 220px; background-color: #0d6efd; color: #fff;
+      overflow-y: auto; z-index: 1020; display: none;
+    }
+    @media (min-width: 768px) { .sidebar { display: block; } .main-content { margin-left: 220px; } }
+    .sidebar a {
+      color: #fff !important; text-decoration: none;
+      display: flex; align-items: center; padding: 10px 15px;
+      border-radius: 6px 0 0 6px; margin: 5px 0; transition: all 0.2s;
+    }
+    .sidebar a:hover, .sidebar a.active { background-color: #0b5ed7; }
+    .sidebar .logo { font-size: 1.3rem; font-weight: bold; padding: 20px 15px; display: flex; gap: 10px; }
+    .offcanvas { background-color: #0d6efd !important; color: #fff; }
+
+    /* Offcanvas (mobile) */
+    .offcanvas { background-color: #0d6efd !important; color: #fff; }
+    .offcanvas a {
+      color: #fff !important; text-decoration: none;
+      display: block; padding: 10px 15px;
+      border-radius: 6px 0 0 6px; margin: 5px 0; position: relative;
+    }
+    .offcanvas a:hover,
+    .offcanvas a.active { background-color: #0b5ed7; }
+    .offcanvas a:hover::after,
+    .offcanvas a.active::after {
+      content: ""; position: absolute; right: 0; top: 0; height: 100%; width: 4px;
+      background-color: #DC3DEB; border-radius: 0 4px 4px 0;
+    }../
+
+    /* Timer */
+    .pomodoro-timer {
+      text-align: center;
+      background: #fff;
+      border-radius: 15px;
+      padding: 40px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+    .timer-display {
+      font-size: 3rem;
+      font-weight: bold;
+      color: #0d6efd;
+      margin-bottom: 20px;
+    }
+    .progress {
+      height: 15px;
+      border-radius: 10px;
+    }
+
+    #btnTop {
+      position: fixed; bottom: 20px; right: 20px;
+      border-radius: 50%; padding: 12px;
+      background-color: #DC3DEB; color: #fff; border: none;
+      display: none; z-index: 1050;
+    }
+  </style>
+</head>
+<body class="bg-light">
+
+<!-- Navbar Mobile -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary d-md-none">
+  <div class="container-fluid">
+    <a class="navbar-brand fw-bold" href="#"><i class="bi bi-book-fill"></i> TechTube</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Offcanvas Menu -->
+<div class="offcanvas offcanvas-start" tabindex="-1" id="mobileMenu">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title"><i class="bi bi-book-fill me-2"></i> TechTube World</h5>
+    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
+  </div>
+  <div class="offcanvas-body">
+    <ul class="nav flex-column">
+      <li><a href="../inicio.html"><i class="bi bi-house-door me-2"></i> Início</a></li>
+      <li><a href="../alunos.html"><i class="bi bi-people me-2"></i> Alunos</a></li>
+      <li><a href="../professores.html"><i class="bi bi-person-badge me-2"></i> Professores</a></li>
+      <li><a href="../cursos.html"><i class="bi bi-journal-bookmark me-2"></i> Cursos</a></li>
+      <li><a href="../organizacao.html"><i class="bi bi-layers me-2"></i> Organização</a></li>
+      <li><a href="pomodoro.html" class="active"><i class="bi bi-alarm me-2"></i> Técnica Pomodoro</a></li>
+      <li><a href="../perfil.html"><i class="bi bi-person-circle me-2"></i> Perfil</a></li>
+    </ul>
+  </div>
+</div>
+
+<!-- Sidebar -->
+<nav class="sidebar p-3">
+  <div class="logo"><i class="bi bi-book-fill"></i> TechTube World</div>
+  <ul class="nav flex-column">
+    <li><a href="../inicio.html"><i class="bi bi-house-door me-2"></i> Início</a></li>
+    <li><a href="../alunos.html"><i class="bi bi-people me-2"></i> Alunos</a></li>
+    <li><a href="../professores.html"><i class="bi bi-person-badge me-2"></i> Professores</a></li>
+    <li><a href="../cursos.html"><i class="bi bi-journal-bookmark me-2"></i> Cursos</a></li>
+    <li><a href="../organizacao.html"><i class="bi bi-layers me-2"></i> Organização</a></li>
+    <li><a href="pomodoro.html" class="active"><i class="bi bi-alarm me-2"></i> Técnica Pomodoro</a></li>
+    <li><a href="../perfil.html"><i class="bi bi-person-circle me-2"></i> Perfil</a></li>
+  </ul>
+</nav>
+
+<!-- Conteúdo -->
+<main class="main-content">
+  <div class="container mt-4">
+    <h3 class="mb-4"><i class="bi bi-alarm me-2"></i> Técnica Pomodoro</h3>
+
+    <!-- Seleção de curso -->
+    <div class="card shadow-sm mb-4">
+      <div class="card-body">
+        <h5 class="card-title"><i class="bi bi-journal-bookmark me-2"></i> Escolher Curso</h5>
+        <select class="form-select">
+          <option selected>Selecione um curso</option>
+          <option>Programação Web</option>
+          <option>Banco de Dados</option>
+          <option>Design UX/UI</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Configuração -->
+    <div class="card shadow-sm mb-4">
+      <div class="card-body">
+        <h5 class="card-title"><i class="bi bi-gear me-2"></i> Configurações</h5>
+        <form class="row g-3">
+          <div class="col-md-3">
+            <label class="form-label">Tempo de Estudo (min)</label>
+            <input type="number" id="studyTime" class="form-control" value="25">
+          </div>
+          <div class="col-md-3">
+            <label class="form-label">Pausa Curta (min)</label>
+            <input type="number" id="shortBreak" class="form-control" value="5">
+          </div>
+          <div class="col-md-3">
+            <label class="form-label">Pausa Longa (min)</label>
+            <input type="number" id="longBreak" class="form-control" value="15">
+          </div>
+          <div class="col-md-3">
+            <label class="form-label">Ciclos</label>
+            <input type="number" id="cycles" class="form-control" value="4">
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Timer -->
+    <div class="pomodoro-timer mb-4">
+      <div id="statusLabel" class="mb-2">⏳ Estudo</div>
+      <div id="timerDisplay" class="timer-display">25:00</div>
+      <div class="progress mb-3">
+        <div id="progressBar" class="progress-bar bg-primary" style="width: 0%"></div>
+      </div>
+      <div class="d-flex justify-content-center gap-3">
+        <button class="btn btn-success" id="startBtn"><i class="bi bi-play-fill"></i> Iniciar</button>
+        <button class="btn btn-warning" id="pauseBtn"><i class="bi bi-pause-fill"></i> Pausar</button>
+        <button class="btn btn-danger" id="resetBtn"><i class="bi bi-arrow-counterclockwise"></i> Resetar</button>
+      </div>
+    </div>
+
+    <!-- Histórico -->
+    <div class="card shadow-sm">
+      <div class="card-body">
+        <h5 class="card-title"><i class="bi bi-graph-up-arrow me-2"></i> Histórico de Sessões</h5>
+        <ul id="historyList" class="list-group">
+          <li class="list-group-item">Nenhuma sessão registrada ainda.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="mt-5 px-3">
+    <div class="text-center">
+      <small>&copy; 2025 TechTube World - Todos os direitos reservados</small>
+    </div>
+  </footer>
+</main>
+
+<!-- Botão Top -->
+<button id="btnTop"><i class="bi bi-arrow-up"></i></button>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  const btnTop = document.getElementById("btnTop");
+  window.onscroll = () => btnTop.style.display = window.scrollY > 200 ? "block" : "none";
+  btnTop.onclick = () => window.scrollTo({top:0, behavior:"smooth"});
+
+  // Pomodoro
+  let timer;
+  let timeLeft = 25 * 60;
+  let isRunning = false;
+  let cycleCount = 0;
+
+  const studyTime = document.getElementById("studyTime");
+  const shortBreak = document.getElementById("shortBreak");
+  const longBreak = document.getElementById("longBreak");
+  const cycles = document.getElementById("cycles");
+
+  const timerDisplay = document.getElementById("timerDisplay");
+  const progressBar = document.getElementById("progressBar");
+  const statusLabel = document.getElementById("statusLabel");
+  const historyList = document.getElementById("historyList");
+
+  function updateDisplay() {
+    const minutes = Math.floor(timeLeft / 60).toString().padStart(2, "0");
+    const seconds = (timeLeft % 60).toString().padStart(2, "0");
+    timerDisplay.textContent = `${minutes}:${seconds}`;
+    const total = parseInt(studyTime.value) * 60;
+    progressBar.style.width = `${100 - (timeLeft / total) * 100}%`;
+  }
+
+  function startTimer() {
+    if (isRunning) return;
+    isRunning = true;
+    timer = setInterval(() => {
+      timeLeft--;
+      updateDisplay();
+      if (timeLeft <= 0) {
+        clearInterval(timer);
+        isRunning = false;
+        cycleCount++;
+        const li = document.createElement("li");
+        li.className = "list-group-item";
+        li.textContent = `✅ Ciclo ${cycleCount} concluído!`;
+        historyList.appendChild(li);
+        if (cycleCount % cycles.value === 0) {
+          timeLeft = longBreak.value * 60;
+          statusLabel.textContent = "😌 Pausa Longa";
+        } else {
+          timeLeft = shortBreak.value * 60;
+          statusLabel.textContent = "☕ Pausa Curta";
+        }
+        updateDisplay();
+      }
+    }, 1000);
+  }
+
+  function pauseTimer() {
+    clearInterval(timer);
+    isRunning = false;
+  }
+
+  function resetTimer() {
+    clearInterval(timer);
+    isRunning = false;
+    timeLeft = studyTime.value * 60;
+    statusLabel.textContent = "⏳ Estudo";
+    updateDisplay();
+    progressBar.style.width = "0%";
+  }
+
+  document.getElementById("startBtn").addEventListener("click", startTimer);
+  document.getElementById("pauseBtn").addEventListener("click", pauseTimer);
+  document.getElementById("resetBtn").addEventListener("click", resetTimer);
+
+  updateDisplay();
+</script>
+</body>
+</html>

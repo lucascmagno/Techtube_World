@@ -37,6 +37,21 @@
     .offcanvas { background-color: #0d6efd !important; color: #fff; }
     .offcanvas a { color: #fff !important; }
 
+    /* Offcanvas (mobile) */
+    .offcanvas { background-color: #0d6efd !important; color: #fff; }
+    .offcanvas a {
+      color: #fff !important; text-decoration: none;
+      display: block; padding: 10px 15px;
+      border-radius: 6px 0 0 6px; margin: 5px 0; position: relative;
+    }
+    .offcanvas a:hover,
+    .offcanvas a.active { background-color: #0b5ed7; }
+    .offcanvas a:hover::after,
+    .offcanvas a.active::after {
+      content: ""; position: absolute; right: 0; top: 0; height: 100%; width: 4px;
+      background-color: #DC3DEB; border-radius: 0 4px 4px 0;
+    }
+
     /* Mapas */
     .mindmap-card {
       border-radius: 12px; transition: transform 0.2s;
