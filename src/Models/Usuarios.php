@@ -33,17 +33,83 @@
             }
         }
 
-        // Criar novo usuário
-        public function create($nome, $email, $matricula, $senha) {
-            $hashedPassword = password_hash($senha, PASSWORD_BCRYPT);
-            $stmt = $this->db->prepare("INSERT INTO $this->table (nome, email, matricula, senha) 
-                                        VALUES (:nome, :email, :matricula, :senha)");
-            $stmt->bindValue(":nome", $nome);
-            $stmt->bindValue(":email", $email);
-            $stmt->bindValue(":matricula", $matricula);
-            $stmt->bindValue(":senha", $hashedPassword);
-            return $stmt->execute();
+        public function adicionarCadastro($nome, $matricula, $email, $telefone, $sexo, $senha, $tipoUsuario, $cep, $rua, $numero, $bairro, $cidade, $uf) {
+        try {
+            $this->db->beginTransaction();
+
+            // 1. Criar registro em timestamps
+            $stmtTs = $this->db->prepare("INSERT INTO timestamps (create_time) VALUES (NOW())");
+            $stmtTs->execute();
+            $timestampsId = $this->db->lastInsertId();
+
+            // 2. Criar cadastro do usuário
+            $stmtUser = $this->db->prepare("
+                INSERT INTO tb_cadastro (nome, matricula, email, telefone, sexo, senha, tipo_usuario, timestamps_id_timestamps) 
+                VALUES (:nome, :matricula, :email, :telefone, :sexo, :senha, :tipo_usuario, :timestamps_id)");
+            
+            $stmtUser->execute([
+                ':nome' => $nome,
+                ':matricula' => $matricula,
+                ':email' => $email,
+                ':telefone' => $telefone,
+                ':sexo' => $sexo,
+                ':senha' => $senha,
+                ':tipo_usuario' => $tipoUsuario,
+                ':timestamps_id' => $timestampsId
+            ]);
+
+            $userId = $this->db->lastInsertId();
+
+            // 3. Endereço (opcional)
+            if ($rua || $cidade || $cep) {
+                $stmtEnd = $this->db->prepare("
+                    INSERT INTO endereco (rua, numero, bairro, cidade, uf, tb_cadastro_idtb_cadastro, timestamps_id_timestamps) 
+                    VALUES (:rua, :numero, :bairro, :cidade, :uf, :user_id, :timestamps_id)");
+                $stmtEnd->execute([
+                    ':rua' => $rua,
+                    ':numero' => $numero,
+                    ':bairro' => $bairro,
+                    ':cidade' => $cidade,
+                    ':uf' => $uf,
+                    ':user_id' => $userId,
+                    ':timestamps_id' => $timestampsId
+                ]);
+            }
+
+            // 4. Criar relação em aluno/professor conforme tipo
+            if (strtolower($tipoUsuario) === "aluno") {
+                $stmtPont = $this->db->prepare("INSERT INTO his_pontuacao (pontuacao, timestamps_id_timestamps) VALUES (0, :timestamps_id)");
+                $stmtPont->execute([':timestamps_id' => $timestampsId]);
+                $pontId = $this->db->lastInsertId();
+
+                $stmtAluno = $this->db->prepare("
+                    INSERT INTO aluno (tb_cadastro_idtb_cadastro, his_pontuacao_idhis_pontuacao, timestamps_id_timestamps) 
+                    VALUES (:user_id, :pont_id, :timestamps_id)");
+                $stmtAluno->execute([
+                    ':user_id' => $userId,
+                    ':pont_id' => $pontId,
+                    ':timestamps_id' => $timestampsId
+                ]);
+            } elseif (strtolower($tipoUsuario) === "professor") {
+                $stmtProf = $this->db->prepare("
+                    INSERT INTO professor (siape, tb_cadastro_idtb_cadastro, timestamps_id_timestamps) 
+                    VALUES (:siape, :user_id, :timestamps_id)");
+                $stmtProf->execute([
+                    ':siape' => rand(10000, 99999), // pode mudar depois
+                    ':user_id' => $userId,
+                    ':timestamps_id' => $timestampsId
+                ]);
+            }
+
+            $this->db->commit();
+            return true;
+
+        } catch (Exception $e) {
+            $this->db->rollBack();
+            error_log("Erro ao criar usuário: " . $e->getMessage());
+            return false;
         }
+    }
 
         // Buscar usuário por ID
         public function getById($id) {

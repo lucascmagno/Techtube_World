@@ -101,29 +101,29 @@
   <div class="form-container signup-container" id="signupForm">
     <div class="p-4 h-100 d-flex flex-column justify-content-center">
       <h2 class="fw-bold mb-3 text-center">Cadastrar</h2>
-      <form id="signupUserForm">
+      <form id="signupUserForm" autocomplete="on" method="POST" action="./src/View/php/cadastro.php">
         
         <!-- PARTE 1 -->
         <div id="step1">
           <h5 class="mb-3">Dados do Usuário</h5>
           <div class="mb-2 input-group">
             <span class="input-group-text"><i class="bi bi-person"></i></span>
-            <input type="text" class="form-control" placeholder="Nome Completo" maxlength="45" required>
+            <input type="text" class="form-control" name="nome" placeholder="Nome Completo" maxlength="45" required>
           </div>
           <div class="mb-2 input-group">
             <span class="input-group-text"><i class="bi bi-card-text"></i></span>
-            <input type="text" class="form-control" placeholder="Matrícula" maxlength="45" required>
+            <input type="text" class="form-control" name="matricula" placeholder="Matrícula" maxlength="45" required>
           </div>
           <div class="mb-2 input-group">
             <span class="input-group-text"><i class="bi bi-envelope"></i></span>
-            <input type="email" class="form-control" placeholder="Email" maxlength="100" required>
+            <input type="email" class="form-control" name="email" placeholder="Email" maxlength="100" required>
           </div>
           <div class="mb-2 input-group">
             <span class="input-group-text"><i class="bi bi-telephone"></i></span>
-            <input type="text" class="form-control" placeholder="Telefone" maxlength="45">
+            <input type="text" class="form-control" name="telefone" placeholder="Telefone" maxlength="45">
           </div>
           <div class="mb-2">
-            <select class="form-select" required>
+            <select class="form-select" required name="sexo">
               <option value="">Sexo</option>
               <option value="M">Masculino</option>
               <option value="F">Feminino</option>
@@ -132,14 +132,14 @@
           </div>
           <div class="mb-2 input-group">
             <span class="input-group-text"><i class="bi bi-lock"></i></span>
-            <input type="password" class="form-control" id="senha" placeholder="Senha" maxlength="255" required>
+            <input type="password" class="form-control" name="senha" id="senha" placeholder="Senha" maxlength="255" required>
           </div>
           <div class="mb-2 input-group">
             <span class="input-group-text"><i class="bi bi-lock-fill"></i></span>
-            <input type="password" class="form-control" id="confirmaSenha" placeholder="Confirmar Senha" maxlength="255" required>
+            <input type="password" class="form-control" id="confirmaSenha" name="confirmaSenha" placeholder="Confirmar Senha" maxlength="255" required>
           </div>
           <div class="mb-3">
-            <select class="form-select" required>
+            <select class="form-select" required name="tipo_usuario">
               <option value="">Tipo de Usuário</option>
               <option value="Aluno">Aluno</option>
               <option value="Professor">Professor</option>
@@ -156,31 +156,31 @@
           <h5 class="mb-3">Endereço (Opcional)</h5>
           <div class="mb-2 input-group">
             <span class="input-group-text"><i class="bi bi-mailbox"></i></span>
-            <input type="text" class="form-control" id="cep" placeholder="CEP" maxlength="9">
+            <input type="text" class="form-control" id="cep" name="CEP" placeholder="CEP" maxlength="9">
           </div>
           <div class="mb-2 input-group">
             <span class="input-group-text"><i class="bi bi-signpost"></i></span>
-            <input type="text" class="form-control" id="rua" placeholder="Rua">
+            <input type="text" class="form-control" id="rua" name="rua" placeholder="Rua">
           </div>
           <div class="mb-2 input-group">
             <span class="input-group-text"><i class="bi bi-hash"></i></span>
-            <input type="text" class="form-control" id="numero" placeholder="Número">
+            <input type="text" class="form-control" id="numero" name="numero" placeholder="Número">
           </div>
           <div class="mb-2 input-group">
             <span class="input-group-text"><i class="bi bi-building"></i></span>
-            <input type="text" class="form-control" id="bairro" placeholder="Bairro">
+            <input type="text" class="form-control" id="bairro" name="bairro" placeholder="Bairro">
           </div>
           <div class="mb-2 input-group">
             <span class="input-group-text"><i class="bi bi-geo-alt"></i></span>
-            <input type="text" class="form-control" id="cidade" placeholder="Cidade">
+            <input type="text" class="form-control" id="cidade" name="cidade" placeholder="Cidade">
           </div>
           <div class="mb-3 input-group">
             <span class="input-group-text"><i class="bi bi-flag"></i></span>
-            <input type="text" class="form-control" id="uf" placeholder="UF">
+            <input type="text" class="form-control" id="uf" name="uf" placeholder="UF">
           </div>
 
           <button type="button" class="btn btn-secondary w-100 mb-2" onclick="prevStep()">Voltar</button>
-          <button type="submit" class="btn btn-success w-100">Cadastrar</button>
+          <input type="submit" class="btn btn-success w-100"></input>
         </div>
       </form>
     </div>
@@ -274,24 +274,6 @@
     document.getElementById("step2").classList.add("d-none");
     document.getElementById("step1").classList.remove("d-none");
   }
-
-  // Validação de senha
-  const signupUserForm = document.getElementById("signupUserForm");
-  const senha = document.getElementById("senha");
-  const confirmaSenha = document.getElementById("confirmaSenha");
-  const alertSenha = document.getElementById("alertSenha");
-
-  signupUserForm.addEventListener("submit", function(e){
-    e.preventDefault();
-    if(senha.value !== confirmaSenha.value){
-      alertSenha.classList.remove("d-none");
-      prevStep(); // volta para etapa 1
-    } else {
-      alertSenha.classList.add("d-none");
-      alert("Cadastro realizado com sucesso!");
-      // aqui você envia os dados para o backend
-    }
-  });
 
   // Preenchimento automático ViaCEP
   document.getElementById("cep").addEventListener("blur", async function(){
