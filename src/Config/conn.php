@@ -9,7 +9,7 @@ class Database {
         if (!isset(self::$instance)) {
             try {
                 self::$instance = new PDO(
-                    "mysql:host=localhost:3307;dbname=techtube;charset=utf8",
+                    "mysql:host=localhost:3306;dbname=techtube;charset=utf8",
                     "root",   // usuário do banco
                     "12345",       // senha do banco
                     [
