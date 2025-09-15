@@ -1,3 +1,13 @@
+<?php
+  $sucesso = $_GET['sucesso'] ?? null;
+  $cadastrar = $_GET['cadastro'] ?? null;
+
+  $user_logout = $_GET['user_logout'] ?? null;
+  if ($user_logout === 'true') {
+    echo "<script>alert('Usuário Deslogado com sucesso!')</script>";
+  }
+?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -74,6 +84,19 @@
   </style>
 </head>
 <body>
+
+  <?php
+        if ($cadastrar === 'true') {
+          echo "<div class='alert alert-success' role='alert'>
+                  Usuário cadastrado com sucesso! Faça login!
+                </div>";
+        }
+        if ($sucesso === 'false') {
+          echo "<div class='alert alert-danger' role='alert'>
+                  Erro ao realizar Login!
+                </div>";
+        }
+      ?>
 
 <div class="auth-wrapper" id="authBox">
   <!-- Login -->

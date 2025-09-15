@@ -8,12 +8,11 @@
         $resultado = $userController->login($email, $senha);
         
         if($resultado){
-            header("Location: /src/View/pages/inicio.php");
+            header("Location: /src/View/pages/inicio.php?sucesso=true");
             exit();
         } else {
-            header("Location: /index.php");
+            header("Location: /index.php?sucesso=false");
             exit();
-            $error = "Email ou senha incorretos.";
         }
     }
 ?>

@@ -1,3 +1,28 @@
+<?php
+session_start();
+  if(SESSION_STATUS() === PHP_SESSION_NONE){
+    header('Location: index.php?user_logout=true');
+    exit();
+}
+
+$sucesso = $_GET['sucesso'] ?? null;
+if ($sucesso === 'false') {
+  echo "<script>alert('Email ou senha incorretos.')</script>";
+} elseif ($sucesso === 'true') {
+  echo "<script>alert('Login realizado com sucesso!')</script>";
+}
+
+$cadastrar = $_GET['cadastro'] ?? null;
+if ($cadastrar === 'true') {
+  echo "<script>alert('Cadastro realizado com sucesso! Faça o login para continuar.')</script>";
+}
+
+$user_logout = $_GET['user_logout'] ?? null;
+if ($user_logout === 'true') {
+  echo "<script>alert('Usuário Deslogado com sucesso!')</script>";
+}
+?>
+
 <!DOCTYPE html>
 <html lang="pt-BR" data-bs-theme="light">
 <head>
