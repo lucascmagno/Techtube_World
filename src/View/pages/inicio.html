@@ -92,6 +92,8 @@ if ($user_logout === 'true') {
       width: 100%; max-height: 250px; object-fit: cover;
       border-radius: 8px; margin-bottom: 15px;
     }
+
+    .link-curso { text-decoration: none; color: inherit; }
   </style>
 </head>
 <body class="bg-light">
@@ -168,23 +170,25 @@ if ($user_logout === 'true') {
 
   <!-- Grid de Cursos -->
   <div class="row g-4 px-3 mt-2">
-    <div class="col-12 col-sm-6 col-lg-4">
-      <div class="card course-card shadow-sm">
-        <img src="https://picsum.photos/400/200" class="card-img-top" alt="Curso">
-        <div class="card-body">
-          <small class="text-muted">Programação | Criado em 10/01/2025</small>
-          <h5 class="card-title mt-2">Introdução ao PHP</h5>
-          <p class="card-text text-muted">Aprenda os fundamentos do PHP e desenvolvimento web back-end.</p>
-          <p class="mb-1"><strong>Carga horária:</strong> 40h</p>
-          <div class="d-flex justify-content-between align-items-center">
-            <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#detalhesCursoModal">
-              Ver Detalhes
-            </button>
-            <span class="text-warning"><i class="bi bi-star-fill"></i> 4.8</span>
+    <a href="curso.html" class="link-curso">
+      <div class="col-12 col-sm-6 col-lg-4">
+        <div class="card course-card shadow-sm">
+          <img src="https://picsum.photos/400/200" class="card-img-top" alt="Curso">
+          <div class="card-body">
+            <small class="text-muted">Programação | Criado em 10/01/2025</small>
+            <h5 class="card-title mt-2">Introdução ao PHP</h5>
+            <p class="card-text text-muted">Aprenda os fundamentos do PHP e desenvolvimento web back-end.</p>
+            <p class="mb-1"><strong>Carga horária:</strong> 40h</p>
+            <div class="d-flex justify-content-between align-items-center">
+              <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#detalhesCursoModal">
+                Ver Detalhes
+              </button>
+              <span class="text-warning"><i class="bi bi-star-fill"></i> 4.8</span>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </a>
   </div>
 
   <!-- Footer -->
