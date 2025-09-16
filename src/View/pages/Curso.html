@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-bs-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TechTube World - Curso</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <style>
+    body { background-color: var(--bs-body-bg); }
+
+    /* Sidebar */
+    .sidebar {
+      position: fixed; top: 0; left: 0; bottom: 0;
+      width: 220px; background-color: #0d6efd; color: #fff;
+      overflow-y: auto; z-index: 1020; display: none;
+    }
+    @media (min-width: 768px) {
+      .sidebar { display: block; }
+      .main-content { margin-left: 220px; }
+    }
+    .sidebar a { color: #fff !important; padding: 10px 15px; display: flex; align-items: center; margin: 5px 0; border-radius: 6px 0 0 6px; position: relative; transition: all 0.2s; }
+    .sidebar a:hover, .sidebar a.active { background-color: #0b5ed7; }
+    .sidebar a:hover::after, .sidebar a.active::after { content: ""; position: absolute; right: 0; top: 0; height: 100%; width: 4px; background-color: #DC3DEB; border-radius: 0 4px 4px 0; }
+    .sidebar .logo { font-size: 1.3rem; font-weight: bold; padding: 20px 15px; display: flex; align-items: center; gap: 10px; }
+
+    /* Offcanvas mobile */
+    .offcanvas { background-color: #0d6efd !important; color: #fff; }
+
+    /* Conteúdo curso */
+    .course-header img {
+      max-height: 320px; object-fit: cover; border-radius: 12px;
+    }
+    .course-meta span {
+      display: inline-block; margin-right: 15px; font-size: 0.9rem;
+    }
+    .activity-card {
+      transition: transform .2s;
+    }
+    .activity-card:hover {
+      transform: translateY(-3px);
+    }
+  </style>
+  <link rel="stylesheet" href="../styles/sidebar_navbar.css">
+</head>
+<body class="bg-light">
+
+<!-- Navbar Mobile -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary d-md-none">
+  <div class="container-fluid">
+    <a class="navbar-brand fw-bold" href="#"><i class="bi bi-book-fill"></i> TechTube</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Offcanvas Menu (Mobile) -->
+<div class="offcanvas offcanvas-start" tabindex="-1" id="mobileMenu">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title"><i class="bi bi-book-fill me-2"></i> TechTube World</h5>
+    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
+  </div>
+  <div class="offcanvas-body">
+    <ul class="nav flex-column">
+      <li class="nav-item"><a href="inicio.html"><i class="bi bi-house-door me-2"></i> Início</a></li>
+      <li class="nav-item"><a href="alunos.html"><i class="bi bi-people me-2"></i> Alunos</a></li>
+      <li class="nav-item"><a href="professores.html"><i class="bi bi-person-badge me-2"></i> Professores</a></li>
+      <li class="nav-item"><a href="cursos.html" class="active"><i class="bi bi-journal-bookmark me-2"></i> Cursos</a></li>
+      <li class="nav-item"><a href="organizacao.html"><i class="bi bi-layers me-2"></i> Organização</a></li>
+      <li class="nav-item"><a href="perfil.html"><i class="bi bi-person-circle me-2"></i> Perfil</a></li>
+    </ul>
+  </div>
+</div>
+
+<!-- Sidebar (Desktop) -->
+<nav class="sidebar p-3">
+  <div class="logo"><i class="bi bi-book-fill"></i> TechTube World</div>
+  <ul class="nav flex-column">
+    <li class="nav-item"><a href="inicio.html"><i class="bi bi-house-door me-2"></i> Início</a></li>
+    <li class="nav-item"><a href="alunos.html"><i class="bi bi-people me-2"></i> Alunos</a></li>
+    <li class="nav-item"><a href="professores.html"><i class="bi bi-person-badge me-2"></i> Professores</a></li>
+    <li class="nav-item"><a href="cursos.html" class="active"><i class="bi bi-journal-bookmark me-2"></i> Cursos</a></li>
+    <li class="nav-item"><a href="organizacao.html"><i class="bi bi-layers me-2"></i> Organização</a></li>
+    <li class="nav-item"><a href="perfil.html"><i class="bi bi-person-circle me-2"></i> Perfil</a></li>
+  </ul>
+</nav>
+
+<!-- Conteúdo -->
+<main class="main-content">
+  <!-- Navbar Topo -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm sticky-top navbar-top px-3">
+    <h5 class="me-auto mb-0 fw-bold"><i class="bi bi-journal-bookmark me-2"></i> Detalhes do Curso</h5>
+    <ul class="navbar-nav ms-auto align-items-center">
+      <li class="nav-item me-3"><a href="#" class="nav-link"><i class="bi bi-bell fs-5"></i></a></li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" data-bs-toggle="dropdown">
+          <img src="https://picsum.photos/200" class="rounded-circle" width="40" height="40" alt="Perfil">
+        </a>
+        <ul class="dropdown-menu dropdown-menu-end">
+          <li><a class="dropdown-item" href="#">Ver Perfil</a></li>
+          <li><a class="dropdown-item" href="#">Configurações</a></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><a class="dropdown-item text-danger" href="#">Sair</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- Conteúdo Curso -->
+  <div class="container mt-4">
+    <div class="card shadow-sm mb-4">
+      <div class="card-body course-header">
+        <div class="row g-4 align-items-center">
+          <div class="col-md-5">
+            <img src="https://picsum.photos/600/300" class="w-100" alt="Imagem do Curso">
+          </div>
+          <div class="col-md-7">
+            <h3 class="fw-bold">Introdução ao PHP</h3>
+            <p class="text-muted">Curso básico para iniciantes aprenderem os fundamentos do PHP e desenvolvimento web.</p>
+            <div class="course-meta">
+              <span><i class="bi bi-person-badge"></i> Professor: Maria Souza</span>
+              <span><i class="bi bi-tags"></i> Categoria: Programação</span>
+              <span><i class="bi bi-calendar-event"></i> Criado em: 12/01/2025</span>
+              <span><i class="bi bi-calendar-check"></i> Última atualização: 15/03/2025</span>
+              <span><i class="bi bi-people"></i> Alunos inscritos: 120</span>
+            </div>
+            <div class="mt-3">
+              <iframe class="w-100 rounded" height="250" src="https://www.youtube.com/embed/OK_JCtrrv-c" title="Video do Curso" frameborder="0" allowfullscreen></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Atividades -->
+    <h4 class="mb-3"><i class="bi bi-list-check me-2"></i> Atividades Disponíveis</h4>
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="card activity-card shadow-sm h-100">
+          <div class="card-body">
+            <h5 class="card-title">Atividade 1</h5>
+            <p class="card-text">Crie um script simples em PHP que exiba "Olá Mundo!".</p>
+            <!-- Botão para abrir o modal -->
+            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalVerAtividade">
+              <i class="bi bi-eye"></i> Visualizar Atividade
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card activity-card shadow-sm h-100">
+          <div class="card-body">
+            <h5 class="card-title">Atividade 2</h5>
+            <p class="card-text">Faça um formulário de cadastro com validação em PHP.</p>
+            <!-- Botão para abrir o modal -->
+            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalVerAtividade">
+              <i class="bi bi-eye"></i> Visualizar Atividade
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Visualizar Atividade -->
+<div class="modal fade" id="modalVerAtividade" tabindex="-1" aria-labelledby="modalVerAtividadeLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl modal-dialog-scrollable">
+    <div class="modal-content">
+      
+      <!-- Cabeçalho -->
+      <div class="modal-header bg-primary text-white">
+        <h5 class="modal-title" id="modalVerAtividadeLabel">
+          <i class="bi bi-journal-check me-2"></i> Atividade: Fundamentos do PHP
+        </h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      
+      <!-- Corpo -->
+      <div class="modal-body">
+        <div class="mb-3">
+          <p><strong>Descrição:</strong> Essa atividade aborda os conceitos básicos de PHP, incluindo variáveis, tipos de dados e estrutura de controle.</p>
+          <p><strong>Data de entrega:</strong> 25/09/2025</p>
+          <p><strong>Valor:</strong> 10 pontos</p>
+        </div>
+
+        <hr>
+
+        <!-- Questionário -->
+        <form id="atividadeForm">
+          
+          <!-- Questão 1 - múltipla escolha -->
+          <div class="mb-4">
+            <label class="form-label fw-bold">1) Qual a forma correta de declarar uma variável no PHP?</label>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="q1" value="a" required>
+              <label class="form-check-label">var nome = "Lucas";</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="q1" value="b">
+              <label class="form-check-label">$nome = "Lucas";</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="q1" value="c">
+              <label class="form-check-label">let nome = "Lucas";</label>
+            </div>
+          </div>
+
+          <!-- Questão 2 - dissertativa -->
+          <div class="mb-4">
+            <label class="form-label fw-bold">2) Explique com suas palavras para que serve a função <code>echo</code> no PHP.</label>
+            <textarea class="form-control" name="q2" rows="3" required></textarea>
+          </div>
+
+          <!-- Questão 3 - múltipla escolha -->
+          <div class="mb-4">
+            <label class="form-label fw-bold">3) Qual destas estruturas de controle existe no PHP?</label>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="q3[]" value="if">
+              <label class="form-check-label">if / else</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="q3[]" value="switch">
+              <label class="form-check-label">switch / case</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="q3[]" value="foreach">
+              <label class="form-check-label">foreach</label>
+            </div>
+          </div>
+
+        </form>
+      </div>
+      
+      <!-- Rodapé -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+        <button type="submit" form="atividadeForm" class="btn btn-success">
+          <i class="bi bi-send-check me-2"></i> Enviar Respostas
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  <!-- Footer -->
+  <footer class="mt-5 px-3">
+    <div class="text-center"><small>&copy; 2025 TechTube World</small></div>
+  </footer>
+</main>
+
+<!-- Botão Top -->
+<button id="btnTop"><i class="bi bi-arrow-up"></i></button>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  const btnTop = document.getElementById("btnTop");
+  window.onscroll = () => btnTop.style.display = window.scrollY > 200 ? "block" : "none";
+  btnTop.onclick = () => window.scrollTo({top:0, behavior:"smooth"});
+</script>
+</body>
+</html>
