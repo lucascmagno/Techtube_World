@@ -65,6 +65,8 @@
       width: 100%; max-height: 250px; object-fit: cover;
       border-radius: 8px; margin-bottom: 15px;
     }
+
+    .link-curso { text-decoration: none; color: inherit; }
   </style>
 </head>
 <body class="bg-light">
@@ -169,21 +171,23 @@
   <!-- Listagem -->
   <div class="container mt-4">
     <div class="row g-4">
-      <div class="col-12 col-sm-6 col-lg-4">
-        <div class="card course-card shadow-sm">
-          <img src="https://picsum.photos/400/200" class="card-img-top" alt="Curso">
-          <div class="card-body">
-            <small class="text-muted">Programação | Prof. João</small>
-            <h5 class="card-title mt-2">Curso de Programação</h5>
-            <p class="card-text text-muted">Aprenda lógica e algoritmos do zero até o avançado.</p>
-            <p class="mb-1"><strong>Inscritos:</strong> 120</p>
-            <div class="d-flex justify-content-between align-items-center">
-              <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#detalhesCursoModal">Ver Detalhes</button>
-              <span class="text-warning"><i class="bi bi-star-fill"></i> 4.8</span>
+      <a class="link-curso" href="./curso.html">
+        <div class="col-12 col-sm-6 col-lg-4">
+          <div class="card course-card shadow-sm">
+            <img src="https://picsum.photos/400/200" class="card-img-top" alt="Curso">
+            <div class="card-body">
+              <small class="text-muted">Programação | Prof. João</small>
+              <h5 class="card-title mt-2">Curso de Programação</h5>
+              <p class="card-text text-muted">Aprenda lógica e algoritmos do zero até o avançado.</p>
+              <p class="mb-1"><strong>Inscritos:</strong> 120</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#detalhesCursoModal">Ver Detalhes</button>
+                <span class="text-warning"><i class="bi bi-star-fill"></i> 4.8</span>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </a>
     </div>
 
     <!-- Paginação -->
