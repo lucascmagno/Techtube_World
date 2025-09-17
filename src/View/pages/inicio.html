@@ -94,8 +94,8 @@ if ($user_logout === 'true') {
     }
 
     .link-curso { text-decoration: none; color: inherit; }
-
   </style>
+  <link rel="stylesheet" href="../styles/sidebar_navbar.css">
 </head>
 <body class="bg-light">
 
@@ -166,19 +166,19 @@ if ($user_logout === 'true') {
 
   <!-- Banner -->
   <div class="banner mt-3 px-3">
-    <img src="https://picsum.photos/1200/300" class="img-fluid w-100 rounded" alt="Banner">
+    <img src="../../assets/images/Mundo da Educação e Inovação.png" class="img-fluid w-100 rounded" style="max-height: 500px;" alt="Banner">
   </div>
 
   <!-- Grid de Cursos -->
   <div class="row g-4 px-3 mt-2">
       <div class="col-12 col-sm-6 col-lg-4">
         <div class="card course-card shadow-sm">
-          <img src="https://picsum.photos/400/200" class="card-img-top" alt="Curso">
+          <img src="../../assets/images/WhatsApp Image 2025-09-16 at 00.46.23.jpeg" class="card-img-top" alt="Curso">
           <div class="card-body">
-            <small class="text-muted">Programação | Criado em 10/01/2025</small>
-            <h5 class="card-title mt-2">Introdução ao PHP</h5>
-            <p class="card-text text-muted">Aprenda os fundamentos do PHP e desenvolvimento web back-end.</p>
-            <p class="mb-1"><strong>Carga horária:</strong> 40h</p>
+            <small class="text-muted">Lingua Portuguesa | Criado em 16/09/2025</small>
+            <h5 class="card-title mt-2">Morfologia e suas aplicações</h5>
+            <p class="card-text text-muted">Morfologia e suas aplicações são importantes na lingua portuguesa, aprenda a utilizá-los e entendê-los</p>
+            <p class="mb-1"><strong>Carga horária:</strong> 2h</p>
             <div class="d-flex justify-content-between align-items-center">
               <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#detalhesCursoModal">
                 Ver Detalhes
@@ -186,7 +186,29 @@ if ($user_logout === 'true') {
               <a href="./curso-selecionado.html" class="btn btn-sm btn-primary">
                 Ver Curso
               </a>
-              <span class="text-warning"><i class="bi bi-star-fill"></i> 4.8</span>
+              <span class="text-warning"><i class="bi bi-star-fill"></i> 5.0</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col-12 col-sm-6 col-lg-4">
+        <div class="card course-card shadow-sm">
+          <img src="../../assets/images/Captura de Tela (160).png" style="max-height: 190px;" class="card-img-top" alt="Curso">
+          <div class="card-body">
+            <small class="text-muted">TICS e Sociedade | Criado em 16/09/2025</small>
+            <h5 class="card-title mt-2">TICs no Dia a Dia</h5>
+            <p class="card-text text-muted">Este curso apresenta exemplos práticos de Tecnologias da Informação e Comunicação aplicadas no cotidiano</p>
+            <p class="mb-1"><strong>Carga horária:</strong> 2h</p>
+            <div class="d-flex justify-content-between align-items-center">
+              <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#detalhesCursoModal2">
+                Ver Detalhes
+              </button>
+              <a href="./curso-selecionado1.html" class="btn btn-sm btn-primary">
+                Ver Curso
+              </a>
+              <span class="text-warning"><i class="bi bi-star-fill"></i> 5.0</span>
             </div>
           </div>
         </div>
@@ -213,35 +235,76 @@ if ($user_logout === 'true') {
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
       </div>
       <div class="modal-body">
-        <img src="https://picsum.photos/800/300" class="course-img-detail" alt="Imagem do curso">
+        <img src="../../assets/images/WhatsApp Image 2025-09-16 at 00.46.23.jpeg" class="course-img-detail" alt="Imagem do curso">
 
         <h4>Introdução ao PHP</h4>
-        <p><strong>Categoria:</strong> Programação</p>
-        <p><strong>Descrição:</strong> Curso completo para aprender os fundamentos de PHP e criar aplicações web dinâmicas.</p>
-        <p><strong>Carga horária:</strong> 40h</p>
-        <p><strong>Data de Criação:</strong> 10/01/2025</p>
-        <p><strong>Última Modificação:</strong> 18/02/2025</p>
+        <p><strong>Categoria:</strong>Português</p>
+        <p><strong>Descrição:</strong>O curso tem como objetivo desenvolver as habilidades de leitura, escrita, interpretação e comunicação dos estudantes, promovendo o domínio da norma-padrão da língua e a compreensão de seus usos em diferentes contextos.</p>
+        <p><strong>Carga horária:</strong> 2h</p>
+        <p><strong>Data de Criação:</strong> 16/09/2025</p>
+        <p><strong>Última Modificação:</strong> 16/09/2025</p>
         <hr>
         <h5><i class="bi bi-person-badge me-2"></i> Professor</h5>
-        <p>Nome: <strong>Carlos Lima</strong><br>Email: carlos.lima@example.com</p>
+        <p>Nome: <strong>Luis Felipe</strong><br>Email: luis@gmail.com</p>
         <hr>
         <h5><i class="bi bi-diagram-3 me-2"></i> Turma</h5>
-        <p>Turma A - 2025<br>Início: 01/02/2025<br>Fim: 30/06/2025</p>
+        <p>Turma A - 2025<br>Início: 01/09/2025<br>Fim: 30/10/2025</p>
         <hr>
         <h5><i class="bi bi-people me-2"></i> Alunos Inscritos</h5>
-        <p>Total: <strong>120</strong></p>
+        <p>Total: <strong>2</strong></p>
         <ul>
-          <li>Maria Souza</li>
-          <li>João Santos</li>
-          <li>Pedro Henrique</li>
+          <li>Lucas Chagas</li>
+          <li>Davi Freire</li>
         </ul>
         <hr>
         <h5><i class="bi bi-star-fill text-warning me-2"></i> Avaliações</h5>
-        <p>Média: <strong>4.8</strong> ⭐</p>
+        <p>Média: <strong>5.0</strong> ⭐</p>
       </div>
       <div class="modal-footer">
         <button class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-        <button class="btn btn-success">Inscrever-se</button>
+        <button class="btn btn-success"><a href="./curso-selecionado.html" class="link-curso">Inscrever-se</a></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: Detalhes do Curso 2-->
+<div class="modal fade" id="detalhesCursoModal2" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header bg-primary text-white">
+        <h5 class="modal-title"><i class="bi bi-journal-bookmark me-2"></i> Detalhes do Curso</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <img src="../../assets/images/Captura de Tela (160).png" class="course-img-detail" alt="Imagem do curso">
+
+        <h4>Introdução ao PHP</h4>
+        <p><strong>Categoria:</strong>TICS e Sociedade</p>
+        <p><strong>Descrição:</strong>Este curso apresenta exemplos práticos de Tecnologias da Informação e Comunicação aplicadas no cotidiano, mostrando como elas impactam educação, comunicação, comércio e trabalho.</p>
+        <p><strong>Carga horária:</strong> 2h</p>
+        <p><strong>Data de Criação:</strong> 16/09/2025</p>
+        <p><strong>Última Modificação:</strong> 16/09/2025</p>
+        <hr>
+        <h5><i class="bi bi-person-badge me-2"></i> Professor</h5>
+        <p>Nome: <strong>Alecsam Skeloto</strong><br>Email: alecsam@gmail.com</p>
+        <hr>
+        <h5><i class="bi bi-diagram-3 me-2"></i> Turma</h5>
+        <p>Turma B - 2025<br>Início: 01/09/2025<br>Fim: 30/10/2025</p>
+        <hr>
+        <h5><i class="bi bi-people me-2"></i> Alunos Inscritos</h5>
+        <p>Total: <strong>2</strong></p>
+        <ul>
+          <li>Erica Cristina</li>
+          <li>Ana Clara</li>
+        </ul>
+        <hr>
+        <h5><i class="bi bi-star-fill text-warning me-2"></i> Avaliações</h5>
+        <p>Média: <strong>5.0</strong> ⭐</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+        <button class="btn btn-success"><a href="./curso-selecionado1.html" class="link-curso">Inscrever-se</a></button>
       </div>
     </div>
   </div>
